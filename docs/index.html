@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo Torrey</title>
+<meta name="description" content="Equipo para carnicería, panadería y abarrotes.">
+<link rel="stylesheet" href="assets/estilos.css">
+</head>
+<body>
+<header class="encabezado">
+  <div class="contenedor">
+    <h1 class="encabezado__titulo">Catálogo Torrey</h1>
+    <p class="encabezado__sub">Equipo para carnicería, panadería y abarrotes.</p>
+  </div>
+</header>
+
+<main class="contenedor">
+  <section class="controles">
+    <label class="buscador">
+      <span class="visualmente-oculto">Buscar producto</span>
+      <input id="buscar" type="search" placeholder="Buscar por nombre, modelo o clave..." autocomplete="off">
+    </label>
+    <div class="filtros">
+        <button class="filtro filtro--activo" data-filtro="" type="button">Todos</button>
+        <button class="filtro" data-filtro="catalogo-torrey" type="button">Catálogo Torrey</button>
+        <button class="filtro" data-filtro="amasadoras" type="button">Amasadoras</button>
+    </div>
+    <p class="conteo"><span id="conteo">3</span> productos</p>
+  </section>
+
+  <section class="rejilla" id="rejilla">
+      <article class="tarjeta" data-categoria="catalogo-torrey" data-busqueda="sierra para hueso st-295 st-295 sierra de cinta para hueso.">
+        <a class="tarjeta__enlace" href="producto/sierra-hueso-st-295.html">
+          <div class="tarjeta__medio">
+            <img src="https://ejemplo.test/wp-content/uploads/sierra.jpg" alt="Sierra para Hueso ST-295" loading="lazy" decoding="async">
+          </div>
+          <div class="tarjeta__cuerpo">
+            <h2 class="tarjeta__titulo">Sierra para Hueso ST-295</h2>
+            <p class="tarjeta__sku">ST-295</p>
+            <p class="tarjeta__resumen">Sierra de cinta para hueso.</p>
+            <p class="tarjeta__precio">$18,990.00</p>
+          </div>
+        </a>
+      </article>
+      <article class="tarjeta" data-categoria="amasadoras" data-busqueda="amasadora de espiral 25 kg ae-25 ideal para panadería mediana.">
+        <a class="tarjeta__enlace" href="producto/amasadora-de-espiral-25-kg.html">
+          <div class="tarjeta__medio">
+            <img src="https://ejemplo.test/wp-content/uploads/amasadora-25.jpg" alt="Amasadora de Espiral 25 kg" loading="lazy" decoding="async">
+          </div>
+          <div class="tarjeta__cuerpo">
+            <h2 class="tarjeta__titulo">Amasadora de Espiral 25 kg</h2>
+            <p class="tarjeta__sku">AE-25</p>
+            <p class="tarjeta__resumen">Ideal para panadería mediana.</p>
+            <p class="tarjeta__precio">$48,900.00</p>
+          </div>
+        </a>
+      </article>
+      <article class="tarjeta" data-categoria="amasadoras" data-busqueda="batidora 20 lt  ">
+        <a class="tarjeta__enlace" href="producto/batidora-20-lt.html">
+          <div class="tarjeta__medio">
+            <img src="https://ejemplo.test/wp-content/uploads/batidora-20.png" alt="Batidora 20 Lt" loading="lazy" decoding="async">
+          </div>
+          <div class="tarjeta__cuerpo">
+            <h2 class="tarjeta__titulo">Batidora 20 Lt</h2>
+            
+            
+            <p class="tarjeta__precio">$12,450.00</p>
+          </div>
+        </a>
+      </article>
+  </section>
+
+  <p class="vacio" id="vacio" hidden>No se encontraron productos con ese criterio.</p>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <p>Catálogo Torrey</p>
+  </div>
+</footer>
+<script src="assets/app.js" defer></script>
+</body>
+</html>

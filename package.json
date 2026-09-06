@@ -1,0 +1,17 @@
+{
+  "name": "torrey-catalogo",
+  "version": "1.0.0",
+  "description": "Extractor de productos (imagenes, titulos, descripciones) y generador de catalogo estatico.",
+  "type": "module",
+  "scripts": {
+    "scrape": "node src/scrape.js",
+    "build": "node src/build.js",
+    "todo": "node src/scrape.js && node src/build.js",
+    "start": "node src/servir.js",
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.1.2"
+  }
+}

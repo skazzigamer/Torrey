@@ -1,0 +1,96 @@
+{
+  "generado": "2026-09-06T10:24:50.442Z",
+  "origen": [
+    "fixtures locales"
+  ],
+  "ejemplo": true,
+  "categorias": [
+    {
+      "slug": "catalogo-torrey",
+      "nombre": "Catálogo Torrey"
+    },
+    {
+      "slug": "amasadoras",
+      "nombre": "Amasadoras"
+    }
+  ],
+  "total": 3,
+  "productos": [
+    {
+      "id": "wc-101",
+      "titulo": "Sierra para Hueso ST-295",
+      "slug": "sierra-hueso-st-295",
+      "url": "https://ejemplo.test/producto/sierra-hueso-st-295/",
+      "sku": "ST-295",
+      "marca": "",
+      "descripcionCorta": "Sierra de cinta para hueso.",
+      "descripcion": "Estructura de acero inoxidable.\n• Motor 1 HP",
+      "descripcionHtml": "<p>Estructura de acero inoxidable.</p><ul><li>Motor 1 HP</li></ul>",
+      "precio": 18990,
+      "precioTexto": "$18,990.00",
+      "imagen": "https://ejemplo.test/wp-content/uploads/sierra.jpg",
+      "imagenes": [
+        "https://ejemplo.test/wp-content/uploads/sierra.jpg",
+        "https://ejemplo.test/wp-content/uploads/sierra-2.jpg"
+      ],
+      "imagenLocal": "",
+      "imagenesLocales": [],
+      "categorias": [
+        "Catálogo Torrey"
+      ],
+      "categoriaOrigen": "catalogo-torrey",
+      "atributos": {},
+      "fuente": "store-api"
+    },
+    {
+      "id": "amasadora-de-espiral-25-kg",
+      "titulo": "Amasadora de Espiral 25 kg",
+      "slug": "amasadora-de-espiral-25-kg",
+      "url": "https://ejemplo.test/producto/amasadora-espiral-25/",
+      "sku": "AE-25",
+      "marca": "Torrey",
+      "descripcionCorta": "Ideal para panadería mediana.",
+      "descripcion": "Descripción\nAmasadora de espiral con tazón fijo.\n\n• Capacidad 25 kg\n• Motor 1.5 HP\n\nGarantía de 1 año.",
+      "descripcionHtml": "<h2>Descripción</h2>\n<p>Amasadora de <strong>espiral</strong> con tazón fijo.</p>\n<ul><li>Capacidad 25 kg</li><li>Motor 1.5 HP</li></ul>\n<p>Garantía de 1 año.</p>",
+      "precio": 48900,
+      "precioTexto": "$48,900.00",
+      "imagen": "https://ejemplo.test/wp-content/uploads/amasadora-25.jpg",
+      "imagenes": [
+        "https://ejemplo.test/wp-content/uploads/amasadora-25.jpg",
+        "https://ejemplo.test/wp-content/uploads/amasadora-25-lateral.jpg"
+      ],
+      "imagenLocal": "",
+      "imagenesLocales": [],
+      "categorias": [],
+      "categoriaOrigen": "amasadoras",
+      "atributos": {
+        "Capacidad": "25 kg",
+        "Voltaje": "220 V"
+      },
+      "fuente": "json-ld"
+    },
+    {
+      "id": "batidora-20-lt",
+      "titulo": "Batidora 20 Lt",
+      "slug": "batidora-20-lt",
+      "url": "https://ejemplo.test/producto/batidora-20-lt/",
+      "sku": "",
+      "marca": "",
+      "descripcionCorta": "",
+      "descripcion": "",
+      "descripcionHtml": "",
+      "precio": 12450,
+      "precioTexto": "$12,450.00",
+      "imagen": "https://ejemplo.test/wp-content/uploads/batidora-20.png",
+      "imagenes": [
+        "https://ejemplo.test/wp-content/uploads/batidora-20.png"
+      ],
+      "imagenLocal": "",
+      "imagenesLocales": [],
+      "categorias": [],
+      "categoriaOrigen": "amasadoras",
+      "atributos": {},
+      "fuente": "html"
+    }
+  ]
+}

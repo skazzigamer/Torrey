@@ -1,0 +1,17 @@
+[
+  {
+    "id": 101,
+    "name": "Sierra para Hueso ST-295",
+    "slug": "sierra-hueso-st-295",
+    "permalink": "https://ejemplo.test/producto/sierra-hueso-st-295/",
+    "sku": "ST-295",
+    "short_description": "<p>Sierra de cinta para hueso.</p>",
+    "description": "<p>Estructura de acero inoxidable.</p><ul><li>Motor 1 HP</li></ul>",
+    "prices": { "price": "1899000", "currency_symbol": "$", "minor_unit": 2 },
+    "images": [
+      { "src": "https://ejemplo.test/wp-content/uploads/sierra-800x800.jpg" },
+      { "src": "https://ejemplo.test/wp-content/uploads/sierra-2.jpg" }
+    ],
+    "categories": [{ "name": "Catálogo Torrey" }]
+  }
+]
