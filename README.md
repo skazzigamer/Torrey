@@ -96,3 +96,9 @@ fusión de fuentes y el manejo de precios y miniaturas.
 Las imágenes y descripciones del sitio de origen son de su titular. Úsalas solo
 si tienes derecho a hacerlo (por ejemplo, si es tu propio catálogo o eres
 distribuidor autorizado).
+
+## Otros proyectos en este repositorio
+
+- [`cristobal-diaz/`](cristobal-diaz/): sitio web de Cristóbal Díaz · Atelier de
+  Cocina. Es independiente del catálogo; su README explica cómo editarlo y
+  publicarlo.
