@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tienda: cursos, pastelería y regalos | Cristóbal Díaz · Atelier de Cocina</title>
-<meta name="description" content="Cursos de cocina y pastelería, piezas de la casa y tarjetas de regalo de Atelier de Cocina. Arma tu pedido y envíalo por WhatsApp.">
+<title>Cheesecake, galletas y más | Cristóbal Díaz · Atelier de Cocina</title>
+<meta name="description" content="Cheesecakes, galletas y más, hechos a mano en el atelier de Cristóbal Díaz con técnica de alta pastelería. Haz tu pedido en línea.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0b0b0b">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="Cristóbal Díaz · Atelier de Cocina">
-<meta property="og:title" content="Tienda: cursos, pastelería y regalos | Cristóbal Díaz · Atelier de Cocina">
-<meta property="og:description" content="Cursos de cocina y pastelería, piezas de la casa y tarjetas de regalo de Atelier de Cocina. Arma tu pedido y envíalo por WhatsApp.">
+<meta property="og:title" content="Cheesecake, galletas y más | Cristóbal Díaz · Atelier de Cocina">
+<meta property="og:description" content="Cheesecakes, galletas y más, hechos a mano en el atelier de Cristóbal Díaz con técnica de alta pastelería. Haz tu pedido en línea.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -23,6 +23,7 @@
 <script>document.documentElement.classList.add('js')</script>
 <script src="assets/pedido.js?v=f5adb3eba2" defer></script>
 <script src="assets/sitio.js?v=fd5c0b81c6" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Cheesecake, galletas & más","serviceType":"Hechos en el atelier","description":"Cheesecakes, galletas y más, hechos a mano en el atelier de Cristóbal Díaz con técnica de alta pastelería. Haz tu pedido en línea.","areaServed":"Guadalajara, Jalisco","provider":{"@type":"Organization","name":"Cristóbal Díaz · Atelier de Cocina","alternateName":"Cristóbal Díaz Atelier de Cocina","description":"Cursos de cocina y pastelería, asesorías para hoteles y restaurantes, Mystery Guest, alta pastelería, pastelería de lujo y cheesecake, galletas & más.","founder":{"@type":"Person","name":"Cristóbal Díaz","jobTitle":"Chef"},"areaServed":"Guadalajara, Jalisco"}}</script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -35,17 +36,17 @@
     <nav class="menu" id="menu" aria-label="Principal">
       <ul class="menu__lista">
         <li class="menu__grupo">
-          <button class="menu__desplegar" type="button" aria-expanded="false" aria-controls="submenu">Especialidades <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
+          <button class="menu__desplegar menu__desplegar--actual" type="button" aria-expanded="false" aria-controls="submenu">Especialidades <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
           <ul class="submenu" id="submenu">
             <li><a class="menu__enlace" href="cursos.html"><span class="menu__num" aria-hidden="true">01</span>Cursos y talleres</a></li>
             <li><a class="menu__enlace" href="asesorias.html"><span class="menu__num" aria-hidden="true">02</span>Asesorías profesionales</a></li>
             <li><a class="menu__enlace" href="mystery-guest.html"><span class="menu__num" aria-hidden="true">03</span>Mystery Guest</a></li>
             <li><a class="menu__enlace" href="alta-pasteleria.html"><span class="menu__num" aria-hidden="true">04</span>Alta Pastelería</a></li>
             <li><a class="menu__enlace" href="pasteleria-de-lujo.html"><span class="menu__num" aria-hidden="true">05</span>Pastelería de Lujo</a></li>
-            <li><a class="menu__enlace" href="cheesecake-y-galletas.html"><span class="menu__num" aria-hidden="true">06</span>Cheesecake, galletas &amp; más</a></li>
+            <li><a class="menu__enlace" href="cheesecake-y-galletas.html" aria-current="page"><span class="menu__num" aria-hidden="true">06</span>Cheesecake, galletas &amp; más</a></li>
           </ul>
         </li>
-        <li><a class="menu__enlace" href="tienda.html" aria-current="page"><span class="menu__num" aria-hidden="true"></span>Tienda</a></li>
+        <li><a class="menu__enlace" href="tienda.html"><span class="menu__num" aria-hidden="true"></span>Tienda</a></li>
         <li><a class="menu__enlace" href="chef.html"><span class="menu__num" aria-hidden="true"></span>El chef</a></li>
       </ul>
       <a class="boton boton--contorno menu__cta" href="contacto.html">Contacto</a>
@@ -59,97 +60,53 @@
   </div>
 </header>
 <main id="contenido">
-<section class="heroe heroe--breve" aria-labelledby="titulo-pagina">
-  <div class="contenedor">
-    <p class="antetitulo">Tienda</p>
-    <h1 class="heroe__titulo" id="titulo-pagina">La tienda <em>del atelier</em></h1>
-    <p class="heroe__lema">Cursos, piezas de pastelería y regalos. Arma tu pedido y envíalo: <em>te confirmamos disponibilidad y forma de pago.</em></p>
+<section class="heroe" aria-labelledby="titulo-pagina">
+  <div class="contenedor heroe__rejilla">
+    <div class="heroe__texto">
+      <p class="antetitulo">06 · Hechos en el atelier</p>
+      <h1 class="heroe__titulo" id="titulo-pagina">Cheesecake, galletas &amp; más</h1>
+      <p class="heroe__lema">Recetas de la casa, hechas a mano con técnica de alta pastelería: <em>para compartir, regalar o darte un gusto.</em></p>
+      <div class="botones">
+        
+        <a class="boton boton--claro" href="contacto.html?servicio=cheesecake-y-galletas">Solicitar información</a>
+      </div>
+    </div>
+    <div class="lockup lockup--linea sello" aria-hidden="true">
+      <span class="lockup__nombre">Cristóbal Díaz</span>
+      <span class="lockup__sub">Atelier de Cocina</span>
+      <span class="lockup__linea"><span>Cheesecake, galletas &amp; más</span></span>
+    </div>
   </div>
 </section>
 
-<section class="seccion seccion--papel" aria-label="Productos">
-  <div class="contenedor">
-    <div class="filtros" role="group" aria-label="Filtrar productos">
-      <button class="filtro" type="button" data-filtro="" aria-pressed="true">Todo</button>
-      <button class="filtro" type="button" data-filtro="cursos" aria-pressed="false">Cursos</button>
-      <button class="filtro" type="button" data-filtro="cheesecake" aria-pressed="false">Cheesecake y galletas</button>
-      <button class="filtro" type="button" data-filtro="pasteleria" aria-pressed="false">Pastelería</button>
-      <button class="filtro" type="button" data-filtro="regalos" aria-pressed="false">Regalos</button>
+<section class="seccion seccion--papel" id="detalles" aria-labelledby="intro-titulo">
+  <div class="contenedor dividido dividido--intro">
+    <div class="intro" data-revelar>
+      <p class="antetitulo">Hechos en el atelier</p>
+      <h2 class="titulo" id="intro-titulo">Lo clásico, <em>hecho como se debe</em>.</h2>
+      <p class="intro__parrafo">Un buen cheesecake y una buena galleta no necesitan adornos: necesitan buen producto, la temperatura exacta y paciencia.</p>
+      <p class="intro__parrafo">Los preparamos en el atelier con el mismo cuidado que cualquier pieza de alta pastelería, para que cada pedido salga igual de bien que el primero.</p>
     </div>
+    <div class="marco marco--vacio" data-revelar aria-hidden="true"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
+  <path d="M46 208 259 120q53 12 68 43v81L46 295Z"/>
+  <path class="ilustracion__tenue" d="M46 208 327 163M46 271 327 220"/>
+  <circle cx="305" cy="333" r="53"/>
+  <circle class="ilustracion__tenue" cx="305" cy="333" r="43"/>
+  <path class="ilustracion__tenue" d="M286 314h7m19-7h6m9 24h6m-38 14h7m14 12h6m-41-24h5"/>
+  <path class="ilustracion__flor" transform="translate(211 160) scale(1.02)" d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/>
+</svg></div>
+  </div>
+</section>
+
+<section class="seccion seccion--marfil" id="cheesecake" aria-labelledby="bloque-1">
+  <div class="contenedor">
+    <header class="encabezado" data-revelar>
+      <p class="antetitulo">De la vitrina</p>
+      <h2 class="titulo" id="bloque-1">Recetas <em>de la casa</em></h2>
+      
+    </header>
     <ul class="productos">
-      <li class="producto" data-categoria="cursos" data-revelar style="--retraso:0">
-        <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
-  <path d="M200 312C132 232 138 104 200 84c62 20 68 148 0 228Z"/>
-  <path class="ilustracion__tenue" d="M200 312c-40-76-38-202 0-228 38 26 40 152 0 228Z"/>
-  <path class="ilustracion__tenue" d="M200 312c-14-72-14-200 0-228 14 28 14 156 0 228Z"/>
-  <path d="M182 312h36"/>
-  <rect x="190" y="312" width="20" height="112" rx="10"/>
-  <path class="ilustracion__flor" transform="translate(200 456) scale(.7)" d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/>
-</svg></div>
-        <div class="producto__cuerpo">
-          <p class="producto__categoria">Curso</p>
-          <h3 class="producto__nombre">Fundamentos de pastelería francesa</h3>
-          <p class="producto__resumen">Masas, cremas y montajes clásicos: la base de toda la alta pastelería.</p>
-          <ul class="producto__detalles"><li>Nivel principiante</li><li>3 sesiones</li><li>Fecha por anunciar</li></ul>
-          <p class="producto__precio"><span class="producto__cotizar">Precio por anunciar</span></p>
-          <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=cursos" data-agregar="fundamentos-pasteleria">Apartar lugar</a></div>
-        </div>
-      </li>
-      <li class="producto" data-categoria="cursos" data-revelar style="--retraso:1">
-        <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
-  <path d="M200 312C132 232 138 104 200 84c62 20 68 148 0 228Z"/>
-  <path class="ilustracion__tenue" d="M200 312c-40-76-38-202 0-228 38 26 40 152 0 228Z"/>
-  <path class="ilustracion__tenue" d="M200 312c-14-72-14-200 0-228 14 28 14 156 0 228Z"/>
-  <path d="M182 312h36"/>
-  <rect x="190" y="312" width="20" height="112" rx="10"/>
-  <path class="ilustracion__flor" transform="translate(200 456) scale(.7)" d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/>
-</svg></div>
-        <div class="producto__cuerpo">
-          <p class="producto__categoria">Curso</p>
-          <h3 class="producto__nombre">Chocolate y bombonería</h3>
-          <p class="producto__resumen">Templado, rellenos y acabados brillantes para bombones de autor.</p>
-          <ul class="producto__detalles"><li>Nivel intermedio</li><li>1 sesión</li><li>Fecha por anunciar</li></ul>
-          <p class="producto__precio"><span class="producto__cotizar">Precio por anunciar</span></p>
-          <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=cursos" data-agregar="chocolate-bomboneria">Apartar lugar</a></div>
-        </div>
-      </li>
-      <li class="producto" data-categoria="cursos" data-revelar style="--retraso:2">
-        <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
-  <path d="M200 312C132 232 138 104 200 84c62 20 68 148 0 228Z"/>
-  <path class="ilustracion__tenue" d="M200 312c-40-76-38-202 0-228 38 26 40 152 0 228Z"/>
-  <path class="ilustracion__tenue" d="M200 312c-14-72-14-200 0-228 14 28 14 156 0 228Z"/>
-  <path d="M182 312h36"/>
-  <rect x="190" y="312" width="20" height="112" rx="10"/>
-  <path class="ilustracion__flor" transform="translate(200 456) scale(.7)" d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/>
-</svg></div>
-        <div class="producto__cuerpo">
-          <p class="producto__categoria">Curso</p>
-          <h3 class="producto__nombre">Pan y viennoiserie</h3>
-          <p class="producto__resumen">Croissants, brioche y masas laminadas, paso a paso.</p>
-          <ul class="producto__detalles"><li>Nivel intermedio</li><li>2 sesiones</li><li>Fecha por anunciar</li></ul>
-          <p class="producto__precio"><span class="producto__cotizar">Precio por anunciar</span></p>
-          <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=cursos" data-agregar="pan-viennoiserie">Apartar lugar</a></div>
-        </div>
-      </li>
-      <li class="producto" data-categoria="cursos" data-revelar style="--retraso:0">
-        <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
-  <path d="M200 312C132 232 138 104 200 84c62 20 68 148 0 228Z"/>
-  <path class="ilustracion__tenue" d="M200 312c-40-76-38-202 0-228 38 26 40 152 0 228Z"/>
-  <path class="ilustracion__tenue" d="M200 312c-14-72-14-200 0-228 14 28 14 156 0 228Z"/>
-  <path d="M182 312h36"/>
-  <rect x="190" y="312" width="20" height="112" rx="10"/>
-  <path class="ilustracion__flor" transform="translate(200 456) scale(.7)" d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/>
-</svg></div>
-        <div class="producto__cuerpo">
-          <p class="producto__categoria">Curso</p>
-          <h3 class="producto__nombre">Postres emplatados</h3>
-          <p class="producto__resumen">Composición, texturas y montaje de postres de restaurante.</p>
-          <ul class="producto__detalles"><li>Nivel profesional</li><li>1 sesión</li><li>Fecha por anunciar</li></ul>
-          <p class="producto__precio"><span class="producto__cotizar">Precio por anunciar</span></p>
-          <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=cursos" data-agregar="postres-emplatados">Apartar lugar</a></div>
-        </div>
-      </li>
-      <li class="producto" data-categoria="cheesecake" data-revelar style="--retraso:1">
+      <li class="producto" data-categoria="cheesecake" data-revelar style="--retraso:0">
         <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
   <path d="M46 208 259 120q53 12 68 43v81L46 295Z"/>
   <path class="ilustracion__tenue" d="M46 208 327 163M46 271 327 220"/>
@@ -167,7 +124,7 @@
           <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=cheesecake-y-galletas" data-agregar="cheesecake-clasico">Agregar al pedido</a></div>
         </div>
       </li>
-      <li class="producto" data-categoria="cheesecake" data-revelar style="--retraso:2">
+      <li class="producto" data-categoria="cheesecake" data-revelar style="--retraso:1">
         <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
   <path d="M46 208 259 120q53 12 68 43v81L46 295Z"/>
   <path class="ilustracion__tenue" d="M46 208 327 163M46 271 327 220"/>
@@ -185,7 +142,7 @@
           <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=cheesecake-y-galletas" data-agregar="cheesecake-frutos-rojos">Agregar al pedido</a></div>
         </div>
       </li>
-      <li class="producto" data-categoria="cheesecake" data-revelar style="--retraso:0">
+      <li class="producto" data-categoria="cheesecake" data-revelar style="--retraso:2">
         <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
   <path d="M46 208 259 120q53 12 68 43v81L46 295Z"/>
   <path class="ilustracion__tenue" d="M46 208 327 163M46 271 327 220"/>
@@ -203,7 +160,7 @@
           <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=cheesecake-y-galletas" data-agregar="caja-galletas">Agregar al pedido</a></div>
         </div>
       </li>
-      <li class="producto" data-categoria="cheesecake" data-revelar style="--retraso:1">
+      <li class="producto" data-categoria="cheesecake" data-revelar style="--retraso:0">
         <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
   <path d="M46 208 259 120q53 12 68 43v81L46 295Z"/>
   <path class="ilustracion__tenue" d="M46 208 327 163M46 271 327 220"/>
@@ -221,105 +178,121 @@
           <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=cheesecake-y-galletas" data-agregar="brownies">Agregar al pedido</a></div>
         </div>
       </li>
-      <li class="producto" data-categoria="pasteleria" data-revelar style="--retraso:2">
-        <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
-  <path d="M92 382h216M200 382v36M166 420h68"/>
-  <rect x="116" y="302" width="168" height="80" rx="3"/>
-  <path class="ilustracion__tenue" d="M116 318q14 14 28 0t28 0 28 0 28 0 28 0 28 0"/>
-  <rect x="148" y="238" width="104" height="64" rx="3"/>
-  <path class="ilustracion__tenue" d="M148 252q13 12 26 0t26 0 26 0 26 0"/>
-  <path class="ilustracion__flor" transform="translate(200 214) scale(1.15)" d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/>
-</svg></div>
-        <div class="producto__cuerpo">
-          <p class="producto__categoria">Pastelería</p>
-          <h3 class="producto__nombre">Pastel de autor</h3>
-          <p class="producto__resumen">Diseñado a partir de tu idea, con los sabores que elijas.</p>
-          <ul class="producto__detalles"><li>Por encargo</li><li>De 10 a 50 personas</li></ul>
-          <p class="producto__precio"><span class="producto__cotizar">Precio a cotizar</span></p>
-          <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=pasteleria-de-lujo" data-agregar="pastel-de-autor">Agregar al pedido</a></div>
-        </div>
-      </li>
-      <li class="producto" data-categoria="pasteleria" data-revelar style="--retraso:0">
-        <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
-  <path d="M92 382h216M200 382v36M166 420h68"/>
-  <rect x="116" y="302" width="168" height="80" rx="3"/>
-  <path class="ilustracion__tenue" d="M116 318q14 14 28 0t28 0 28 0 28 0 28 0 28 0"/>
-  <rect x="148" y="238" width="104" height="64" rx="3"/>
-  <path class="ilustracion__tenue" d="M148 252q13 12 26 0t26 0 26 0 26 0"/>
-  <path class="ilustracion__flor" transform="translate(200 214) scale(1.15)" d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/>
-</svg></div>
-        <div class="producto__cuerpo">
-          <p class="producto__categoria">Pastelería</p>
-          <h3 class="producto__nombre">Caja de bombones</h3>
-          <p class="producto__resumen">Bombones de autor con rellenos de temporada.</p>
-          <ul class="producto__detalles"><li>12 piezas</li></ul>
-          <p class="producto__precio"><span class="producto__cotizar">Precio a cotizar</span></p>
-          <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html?servicio=pasteleria-de-lujo" data-agregar="caja-bombones">Agregar al pedido</a></div>
-        </div>
-      </li>
-      <li class="producto" data-categoria="regalos" data-revelar style="--retraso:1">
-        <div class="producto__medio producto__medio--vacio"><svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
-  <rect x="122" y="238" width="156" height="148" rx="3"/>
-  <rect x="110" y="204" width="180" height="34" rx="3"/>
-  <path class="ilustracion__tenue" d="M192 204v182M208 204v182"/>
-  <path d="M200 204c-18-34-60-42-58-14 2 20 38 18 58 14Zm0 0c18-34 60-42 58-14-2 20-38 18-58 14Z"/>
-  <circle class="ilustracion__sello" cx="200" cy="312" r="23"/>
-  <path class="ilustracion__flor" transform="translate(200 312) scale(.95)" d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/>
-</svg></div>
-        <div class="producto__cuerpo">
-          <p class="producto__categoria">Regalo</p>
-          <h3 class="producto__nombre">Tarjeta de regalo</h3>
-          <p class="producto__resumen">Regala un curso o una pieza de la casa.</p>
-          <ul class="producto__detalles"><li>Válida para cursos y pastelería</li></ul>
-          <p class="producto__precio"><span class="producto__cotizar">Tú eliges el monto</span></p>
-          <div class="producto__acciones"><a class="boton boton--oscuro" href="contacto.html" data-agregar="tarjeta-regalo">Agregar al pedido</a></div>
-        </div>
-      </li>
     </ul>
-    
+    <a class="enlace-flecha" href="tienda.html?categoria=cheesecake">Ver en la tienda <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></a>
+  </div>
+</section>
+<section class="seccion seccion--marfil seccion--continua" aria-labelledby="bloque-2">
+  <div class="contenedor">
+    <header class="encabezado" data-revelar>
+      <p class="antetitulo">Para cada ocasión</p>
+      <h2 class="titulo" id="bloque-2">Para compartir, <em>regalar o consentirte</em></h2>
+      
+    </header>
+    <ol class="rejilla rejilla--3">
+      <li class="rejilla__item" data-revelar style="--retraso:0">
+        <span class="rejilla__num">01</span>
+        <h3 class="rejilla__titulo">Para compartir</h3>
+        <p class="rejilla__texto">En la sobremesa, en la oficina o en una reunión con amigos.</p>
+      </li>
+      <li class="rejilla__item" data-revelar style="--retraso:1">
+        <span class="rejilla__num">02</span>
+        <h3 class="rejilla__titulo">Para regalar</h3>
+        <p class="rejilla__texto">Cajas listas para dar un detalle que se recuerda.</p>
+      </li>
+      <li class="rejilla__item" data-revelar style="--retraso:2">
+        <span class="rejilla__num">03</span>
+        <h3 class="rejilla__titulo">Para eventos</h3>
+        <p class="rejilla__texto">Pedidos grandes y mesas de postres, con anticipación.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+<section class="seccion seccion--marfil seccion--continua" aria-labelledby="bloque-3">
+  <div class="contenedor dividido dividido--fijo">
+    <header class="encabezado" data-revelar>
+      <p class="antetitulo">Preguntas frecuentes</p>
+      <h2 class="titulo" id="bloque-3">Antes de <em>pedir</em></h2>
+      
+    </header>
+    <div class="preguntas" data-revelar>
+      <details class="pregunta">
+        <summary><span>¿Con cuánta anticipación debo pedir?</span><span class="pregunta__icono" aria-hidden="true"></span></summary>
+        <p class="pregunta__respuesta">Depende del producto y de la cantidad: al recibir tu pedido te confirmamos la fecha de entrega.</p>
+      </details>
+      <details class="pregunta">
+        <summary><span>¿Puedo recoger mi pedido?</span><span class="pregunta__icono" aria-hidden="true"></span></summary>
+        <p class="pregunta__respuesta">Sí, en el atelier. Si necesitas envío, pregúntanos por la cobertura y el costo.</p>
+      </details>
+      <details class="pregunta">
+        <summary><span>¿Cómo se conservan?</span><span class="pregunta__icono" aria-hidden="true"></span></summary>
+        <p class="pregunta__respuesta">El cheesecake, en refrigeración; las galletas, en un recipiente bien cerrado a temperatura ambiente. Con cada pedido te damos las indicaciones.</p>
+      </details>
+    </div>
   </div>
 </section>
 
-<section class="seccion seccion--arena" aria-labelledby="como-comprar">
+<section class="seccion seccion--papel otras" aria-labelledby="otras-titulo">
   <div class="contenedor">
-    <header class="encabezado" data-revelar>
-      <p class="antetitulo">Cómo comprar</p>
-      <h2 class="titulo" id="como-comprar">Así funciona <em>tu pedido</em></h2>
-      
-    </header>
-    <ol class="pasos pasos--4">
-      <li class="paso" data-revelar style="--retraso:0">
-        <span class="paso__num">01</span>
-        <h3 class="paso__titulo">Elige</h3>
-        <p class="paso__texto">Agrega a tu pedido los cursos y las piezas que quieras.</p>
+    <h2 class="antetitulo otras__titulo" id="otras-titulo">Otras especialidades del atelier</h2>
+    <ul class="otras__lista otras__lista--5">
+      <li class="rama" data-revelar style="--retraso:0">
+        <a class="tarjeta tarjeta--compacta" href="cursos.html">
+          <span class="tarjeta__num">01</span>
+          <span class="tarjeta__etiqueta">Taller de cocina</span>
+          <h3 class="tarjeta__nombre">Cursos y talleres</h3>
+          
+          <span class="tarjeta__mas">Conocer más <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
+        </a>
       </li>
-      <li class="paso" data-revelar style="--retraso:1">
-        <span class="paso__num">02</span>
-        <h3 class="paso__titulo">Envía tu pedido</h3>
-        <p class="paso__texto">Mándalo por WhatsApp con un clic: ya va con todo el detalle.</p>
+      <li class="rama" data-revelar style="--retraso:1">
+        <a class="tarjeta tarjeta--compacta" href="asesorias.html">
+          <span class="tarjeta__num">02</span>
+          <span class="tarjeta__etiqueta">Hoteles y restaurantes</span>
+          <h3 class="tarjeta__nombre">Asesorías profesionales</h3>
+          
+          <span class="tarjeta__mas">Conocer más <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
+        </a>
       </li>
-      <li class="paso" data-revelar style="--retraso:2">
-        <span class="paso__num">03</span>
-        <h3 class="paso__titulo">Confirmamos</h3>
-        <p class="paso__texto">Te respondemos con la disponibilidad, el total y la forma de pago.</p>
+      <li class="rama" data-revelar style="--retraso:2">
+        <a class="tarjeta tarjeta--compacta" href="mystery-guest.html">
+          <span class="tarjeta__num">03</span>
+          <span class="tarjeta__etiqueta">Evaluación anónima</span>
+          <h3 class="tarjeta__nombre">Mystery Guest</h3>
+          
+          <span class="tarjeta__mas">Conocer más <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
+        </a>
       </li>
-      <li class="paso" data-revelar style="--retraso:3">
-        <span class="paso__num">04</span>
-        <h3 class="paso__titulo">Disfruta</h3>
-        <p class="paso__texto">Recoge o recibe tu pedido, o te esperamos en el taller.</p>
+      <li class="rama" data-revelar style="--retraso:3">
+        <a class="tarjeta tarjeta--compacta" href="alta-pasteleria.html">
+          <span class="tarjeta__num">04</span>
+          <span class="tarjeta__etiqueta">Para restaurantes y hoteles</span>
+          <h3 class="tarjeta__nombre">Alta Pastelería</h3>
+          
+          <span class="tarjeta__mas">Conocer más <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
+        </a>
       </li>
-    </ol>
+      <li class="rama" data-revelar style="--retraso:4">
+        <a class="tarjeta tarjeta--compacta" href="pasteleria-de-lujo.html">
+          <span class="tarjeta__num">05</span>
+          <span class="tarjeta__etiqueta">Piezas por encargo</span>
+          <h3 class="tarjeta__nombre">Pastelería de Lujo</h3>
+          
+          <span class="tarjeta__mas">Conocer más <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
+        </a>
+      </li>
+    </ul>
   </div>
 </section>
 
 <section class="cierre" aria-labelledby="cierre-titulo">
   <div class="contenedor cierre__interior" data-revelar>
     <svg class="flor cierre__flor" viewBox="-17 -17 34 34" aria-hidden="true" focusable="false"><path d="M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z"/></svg>
-    <h2 class="cierre__titulo" id="cierre-titulo">¿Buscas algo <em>especial</em>?</h2>
-    <p class="cierre__texto">Si no encuentras lo que buscas, escríbenos: hacemos piezas por encargo y clases a la medida.</p>
+    <h2 class="cierre__titulo" id="cierre-titulo">Haz <em>tu pedido</em></h2>
+    <p class="cierre__texto">Elige tus piezas en la tienda o escríbenos para un pedido especial.</p>
     <div class="botones botones--centrados">
       
-      <a class="boton boton--claro" href="contacto.html">Enviar un mensaje</a>
+      <a class="boton boton--claro" href="contacto.html?servicio=cheesecake-y-galletas">Enviar un mensaje</a>
     </div>
   </div>
 </section>

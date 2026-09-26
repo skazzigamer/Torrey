@@ -3,8 +3,9 @@
 Sitio web y tienda de la marca matriz: un **taller de cocina** donde se imparten
 **cursos**, y del que salen las demás especialidades: **Asesorías
 profesionales** para hoteles y restaurantes, **Mystery Guest**, **Alta
-Pastelería** y **Pastelería de Lujo**. Es un sitio estático (HTML, CSS y un
-poco de JavaScript), sin dependencias ni `npm install`.
+Pastelería**, **Pastelería de Lujo** y **Cheesecake, galletas & más**. Es un
+sitio estático (HTML, CSS y un poco de JavaScript), sin dependencias ni
+`npm install`.
 
 ```
 cd cristobal-diaz
@@ -25,6 +26,7 @@ Requiere Node 20.11 o posterior.
 | Mystery Guest | `mystery-guest.html` | Hoteles y restaurantes: qué se evalúa, cómo funciona y qué se entrega. |
 | Alta Pastelería | `alta-pasteleria.html` | Cartas de postres, banquetes, desarrollo de producto y capacitación de equipos. |
 | Pastelería de Lujo | `pasteleria-de-lujo.html` | Piezas de la casa y pedidos por encargo para bodas, eventos y regalos. |
+| Cheesecake, galletas & más | `cheesecake-y-galletas.html` | Sub-marca con logotipo propio: recetas de la casa para pedir en línea. |
 | Tienda | `tienda.html` | Cursos, pastelería y regalos, con filtros y pedido. |
 | El chef | `chef.html` | Semblanza, trayectoria (opcional) y principios. |
 | Contacto | `contacto.html` | Formulario que arma el mensaje y lo abre en WhatsApp o en el correo. |
@@ -67,7 +69,7 @@ Los productos van en `CATALOGO`:
 ```js
 {
   id: 'chocolate-bomboneria',       // único, minúsculas y guiones
-  categoria: 'cursos',              // cursos | pasteleria | regalos
+  categoria: 'cursos',              // cursos | cheesecake | pasteleria | regalos
   nombre: 'Chocolate y bombonería',
   resumen: 'Templado, rellenos y acabados brillantes.',
   detalles: ['Nivel intermedio', '1 sesión'],
@@ -83,7 +85,7 @@ Los productos van en `CATALOGO`:
 - `desde: true` muestra "Desde $…"; `agotado: true` cambia el botón por
   **Lista de espera**.
 - Un curso con varias fechas se registra una vez por fecha.
-- **Los 9 productos actuales son ejemplos** (`ejemplo: true`): solo se ven en
+- **Los 11 productos actuales son ejemplos** (`ejemplo: true`): solo se ven en
   la vista previa y nunca se publican con dominio. Hay que reemplazarlos por
   los cursos, piezas y precios reales del cliente.
 - **Cobro en línea sin programar nada**: en Mercado Pago ("Link de pago") o en
@@ -99,7 +101,8 @@ Los productos van en `CATALOGO`:
 ## Fotos
 
 Mientras no haya fotos, cada espacio muestra una ilustración de línea (un
-batidor, un plato, un pastel, una caja de regalo o el monograma del chef). Para
+batidor, un plato, un pastel, una rebanada de cheesecake, una caja de regalo o
+el monograma del chef). Para
 usar una foto se copia a `recursos/img/` y se escribe el nombre del archivo en
 `contenido.js`. Si el archivo no existe, la compilación avisa y deja la
 ilustración.
@@ -111,6 +114,7 @@ ilustración.
 | Mystery Guest | `SERVICIOS[2].intro.imagen` | Mesa servida o detalle de servicio, sin rostros de clientes. |
 | Alta Pastelería | `SERVICIOS[3].intro.imagen` | Postre emplatado o entremet. |
 | Pastelería de Lujo | `SERVICIOS[4].intro.imagen` | Pastel de autor o caja de regalo. |
+| Cheesecake, galletas & más | `SERVICIOS[5].intro.imagen` | Rebanada de cheesecake o caja de galletas. |
 | Productos | `CATALOGO[].imagen` | Una foto por curso o pieza, horizontal 4:3. |
 | El chef | `CHEF.imagen` | Retrato vertical del chef. |
 | Firma | `CHEF.firma` | La firma del logotipo en negro, PNG o SVG con fondo transparente. |
@@ -120,12 +124,23 @@ px) y horizontal 4:3 para los productos, en JPG o WebP de menos de 300 KB.
 
 ## Logotipo
 
-El logotipo se recreó a partir de los archivos que envió el cliente: el nombre
-en Poppins ExtraBold, "Atelier de Cocina" espaciado y la flor redibujada en
-SVG (constante `FLOR` en `plantillas.js`). Con esa misma base se generaron
-`recursos/img/og.jpg` (la imagen que aparece al compartir el enlace por
-WhatsApp o redes), el favicon y el ícono para iPhone. Si el cliente entrega
-los archivos originales en vector, conviene reemplazar esas tres imágenes.
+Los archivos que envió el cliente están en `marca/` (no se publican): el
+logotipo matriz y el de la sub-marca "Cheesecake, galletas & más". En el sitio
+el logotipo se dibuja con texto y SVG para que se vea nítido en cualquier
+tamaño, con las medidas tomadas de esos archivos:
+
+- Nombre en Poppins ExtraBold con espaciado de -0.094em (en la cabecera, donde
+  mide 20 px, se abre a -0.07em para que no se junten las palabras).
+- "Atelier de Cocina" a 0.28 del tamaño del nombre y la flor de seis pétalos
+  redibujada sobre la original (constante `FLOR` en `plantillas.js`).
+- Cada especialidad usa el patrón de sub-marca del cliente: nombre, "Atelier
+  de Cocina" y la línea de la especialidad entre rayas.
+
+Con esa misma base se generaron `recursos/img/og.jpg` (la imagen que aparece al
+compartir el enlace por WhatsApp o redes), el favicon y el ícono para iPhone.
+
+Nota para el cliente: en su logotipo dice "GALLETAS & MAS"; lo correcto es
+"MÁS", con acento. En el sitio ya aparece corregido.
 
 ## Publicar
 

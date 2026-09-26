@@ -63,16 +63,17 @@ const json = (objeto) => JSON.stringify(objeto).replace(/</g, '\\u003c');
 const nombreSitio = ({ marca }) => `${marca.nombre} · ${marca.submarca}`;
 const numero = (i) => String(i + 1).padStart(2, '0');
 
-// Flor de seis petalos del logotipo, redibujada como un solo trazo.
+// Flor de seis petalos del logotipo, redibujada como un solo trazo sobre el archivo oficial.
 const FLOR =
-  'M-2.6 -4.5C-3.6 -6.24 -5.6 -8.4 -5.6 -10.4C-5.6 -13.49 -3.09 -16 0 -16C3.09 -16 5.6 -13.49 5.6 -10.4' +
-  'C5.6 -8.4 3.6 -6.24 2.6 -4.5C3.6 -6.24 4.47 -9.05 6.21 -10.05C8.89 -11.6 12.31 -10.68 13.86 -8' +
-  'C15.4 -5.32 14.49 -1.9 11.81 -0.35C10.07 0.65 7.2 0 5.2 0C7.2 0 10.07 -0.65 11.81 0.35' +
-  'C14.49 1.9 15.4 5.32 13.86 8C12.31 10.68 8.89 11.6 6.21 10.05C4.47 9.05 3.6 6.24 2.6 4.5' +
-  'C3.6 6.24 5.6 8.4 5.6 10.4C5.6 13.49 3.09 16 0 16C-3.09 16 -5.6 13.49 -5.6 10.4' +
-  'C-5.6 8.4 -3.6 6.24 -2.6 4.5C-3.6 6.24 -4.47 9.05 -6.21 10.05C-8.89 11.6 -12.31 10.68 -13.86 8' +
-  'C-15.4 5.32 -14.49 1.9 -11.81 0.35C-10.07 -0.65 -7.2 0 -5.2 0C-7.2 0 -10.07 0.65 -11.81 -0.35' +
-  'C-14.49 -1.9 -15.4 -5.32 -13.86 -8C-12.31 -10.68 -8.89 -11.6 -6.21 -10.05C-4.47 -9.05 -3.6 -6.24 -2.6 -4.5Z';
+  'M-2.73 -4.5C-3.78 -6.24 -6.09 -8.2 -6.09 -10.2C-6.09 -13.4 -3.36 -16 0 -16' +
+  'C3.36 -16 6.09 -13.4 6.09 -10.2C6.09 -8.2 3.78 -6.24 2.73 -4.5C3.78 -6.24 4.41 -9.12 6.23 -10.12' +
+  'C9.14 -11.72 12.87 -10.77 14.55 -8C16.23 -5.23 15.23 -1.68 12.32 -0.08C10.5 0.92 7.56 0 5.46 0' +
+  'C7.56 0 10.5 -0.92 12.32 0.08C15.23 1.68 16.23 5.23 14.55 8C12.87 10.77 9.14 11.72 6.23 10.12' +
+  'C4.41 9.12 3.78 6.24 2.73 4.5C3.78 6.24 6.09 8.2 6.09 10.2C6.09 13.4 3.36 16 0 16' +
+  'C-3.36 16 -6.09 13.4 -6.09 10.2C-6.09 8.2 -3.78 6.24 -2.73 4.5C-3.78 6.24 -4.41 9.12 -6.23 10.12' +
+  'C-9.14 11.72 -12.87 10.77 -14.55 8C-16.23 5.23 -15.23 1.68 -12.32 0.08C-10.5 -0.92 -7.56 0 -5.46 0' +
+  'C-7.56 0 -10.5 0.92 -12.32 -0.08C-15.23 -1.68 -16.23 -5.23 -14.55 -8' +
+  'C-12.87 -10.77 -9.14 -11.72 -6.23 -10.12C-4.41 -9.12 -3.78 -6.24 -2.73 -4.5Z';
 
 function flor(clase = '') {
   return `<svg class="flor${clase ? ` ${clase}` : ''}" viewBox="-17 -17 34 34" aria-hidden="true" focusable="false"><path d="${FLOR}"/></svg>`;
@@ -134,6 +135,14 @@ const ILUSTRACIONES = {
   <rect x="190" y="312" width="20" height="112" rx="10"/>
   <path class="ilustracion__flor" transform="translate(200 456) scale(.7)" d="${FLOR}"/>
 </svg>`,
+  cheesecake: `<svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
+  <path d="M46 208 259 120q53 12 68 43v81L46 295Z"/>
+  <path class="ilustracion__tenue" d="M46 208 327 163M46 271 327 220"/>
+  <circle cx="305" cy="333" r="53"/>
+  <circle class="ilustracion__tenue" cx="305" cy="333" r="43"/>
+  <path class="ilustracion__tenue" d="M286 314h7m19-7h6m9 24h6m-38 14h7m14 12h6m-41-24h5"/>
+  <path class="ilustracion__flor" transform="translate(211 160) scale(1.02)" d="${FLOR}"/>
+</svg>`,
   caja: `<svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
   <rect x="122" y="238" width="156" height="148" rx="3"/>
   <rect x="110" y="204" width="180" height="34" rx="3"/>
@@ -193,11 +202,13 @@ function botonWhatsApp(ctx, mensaje, clase = 'boton--claro', texto = 'Escribir p
   return `<a class="boton ${clase}" href="${escapar(href)}" target="_blank" rel="noopener">${ICONOS.whatsapp}<span>${escapar(texto)}</span></a>`;
 }
 
-function lockup(ctx, { sub = ctx.marca.submarca, clase = '', etiqueta = 'div', atributos = '' } = {}) {
-  return `<${etiqueta} class="lockup${clase ? ` ${clase}` : ''}"${atributos}>
+// Logotipo: la matriz lleva la flor; una sub-marca, su linea entre rayas (como el logo de cheesecake).
+function lockup(ctx, { linea = '', clase = '', etiqueta = 'div', atributos = '' } = {}) {
+  const clases = ['lockup', linea ? 'lockup--linea' : '', clase].filter(Boolean).join(' ');
+  return `<${etiqueta} class="${clases}"${atributos}>
       <span class="lockup__nombre">${escapar(ctx.marca.nombre)}</span>
-      <span class="lockup__sub">${escapar(sub)}</span>
-      ${flor('lockup__flor')}
+      <span class="lockup__sub">${escapar(ctx.marca.submarca)}</span>
+      ${linea ? `<span class="lockup__linea"><span>${escapar(linea)}</span></span>` : flor('lockup__flor')}
     </${etiqueta}>`;
 }
 
@@ -257,10 +268,10 @@ function cierre(ctx, { titulo, texto, mensaje, servicio }) {
 </section>`;
 }
 
-function tarjetasServicios(ctx, servicios, { compactas = false } = {}) {
+function tarjetasServicios(ctx, servicios, { compactas = false, columnas = Infinity } = {}) {
   return servicios
     .map(
-      (s, i) => `<li class="rama" data-revelar style="--retraso:${i}">
+      (s, i) => `<li class="rama${i >= columnas ? ' rama--abajo' : ''}" data-revelar style="--retraso:${i % columnas}">
         <a class="tarjeta${compactas ? ' tarjeta--compacta' : ''}" href="${ctx.prefijo}${s.slug}.html">
           <span class="tarjeta__num">${s.numero}</span>
           <span class="tarjeta__etiqueta">${escapar(s.etiqueta)}</span>
@@ -805,6 +816,7 @@ export function paginaInicio(ctx) {
   const { marca, portada, servicios, chef, catalogo, prefijo } = ctx;
   const porSlug = new Map(servicios.map((s) => [s.slug, s]));
   const cursos = catalogo.filter((p) => p.categoria === 'cursos').slice(0, 3);
+  const columnasArbol = servicios.length <= 5 ? servicios.length : Math.ceil(servicios.length / 2);
   const publico = (p) => `<div class="publico publico--${p.tono}">
     ${flor('publico__flor')}
     <div class="publico__interior" data-revelar>
@@ -850,8 +862,8 @@ export function paginaInicio(ctx) {
     ${encabezado({ ...portada.matriz, id: 'especialidades-titulo', centrado: true })}
     <div class="arbol">
       <div class="arbol__raiz" aria-hidden="true">${flor()}</div>
-      <ol class="arbol__ramas${servicios.length % 2 ? ' arbol__ramas--impar' : ''}" style="--ramas:${servicios.length}">
-      ${tarjetasServicios(ctx, servicios)}
+      <ol class="arbol__ramas${servicios.length % 2 ? ' arbol__ramas--impar' : ''}" style="--columnas:${columnasArbol}">
+      ${tarjetasServicios(ctx, servicios, { columnas: columnasArbol })}
       </ol>
     </div>
   </div>
@@ -918,7 +930,7 @@ export function paginaServicio(ctx, s) {
         )}">${whatsapp ? 'Enviar un mensaje' : 'Solicitar información'}</a>
       </div>
     </div>
-    ${lockup(ctx, { sub: s.nombre, clase: 'sello', atributos: ' aria-hidden="true"' })}
+    ${lockup(ctx, { linea: s.nombre, clase: 'sello', atributos: ' aria-hidden="true"' })}
   </div>
 </section>
 

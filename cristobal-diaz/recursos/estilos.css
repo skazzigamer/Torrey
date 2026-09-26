@@ -198,25 +198,57 @@ textarea {
   text-align: center;
   text-decoration: none;
 }
+/* Proporciones medidas sobre el logotipo oficial (JPG del cliente). El nombre va un poco a la
+   izquierda del eje del lema y la flor, igual que en el original. */
 .lockup__nombre {
+  margin-left: -0.2em;
   font: 800 1em/1 var(--sans);
-  letter-spacing: -0.05em;
+  letter-spacing: -0.094em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 .lockup__sub {
-  margin-top: 0.75em;
-  padding-left: 0.55em;
-  font: 500 0.26em/1 var(--sans);
-  letter-spacing: 0.55em;
+  margin-top: 0.21em;
+  padding-left: 0.4em;
+  font: 500 0.28em/1 var(--sans);
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 .lockup__flor {
-  width: 0.84em;
-  height: 0.84em;
-  margin-top: 0.38em;
+  width: 0.77em;
+  height: 0.77em;
+  margin-top: 0.11em;
   stroke-width: 1.5;
+}
+/* Sub-marca: nombre, "Atelier de Cocina" y la línea de la especialidad entre rayas. */
+.lockup--linea .lockup__sub {
+  margin-top: 0.26em;
+  padding-left: 0.42em;
+  font-size: 0.318em;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+}
+.lockup__linea {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-top: 1.72em;
+  font: 600 0.226em/1 var(--sans);
+  letter-spacing: 0.27em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.lockup__linea span {
+  margin-right: -0.27em;
+}
+.lockup__linea::before,
+.lockup__linea::after {
+  content: '';
+  flex: none;
+  width: 1.6em;
+  height: 0.085em;
+  background: currentColor;
 }
 
 /* ——— Botones y enlaces ——— */
@@ -336,6 +368,10 @@ textarea {
   transition:
     opacity 0.4s var(--curva),
     visibility 0.4s;
+}
+/* A 20 px el espaciado del original junta "CRISTÓBAL" con "DÍAZ": se abre un poco (ajuste óptico). */
+.marca .lockup__nombre {
+  letter-spacing: -0.07em;
 }
 .marca .lockup__sub {
   margin-top: 0.62em;
@@ -887,16 +923,16 @@ textarea {
     --tronco: 4rem;
   }
   .arbol__ramas {
-    grid-template-columns: repeat(var(--ramas, 4), minmax(0, 1fr));
+    grid-template-columns: repeat(var(--columnas, 4), minmax(0, 1fr));
   }
   .arbol__ramas--impar .rama:first-child {
     grid-column: auto;
   }
   .arbol__ramas::before {
     top: calc(var(--tronco) / -2);
-    right: calc((100% - (var(--ramas, 4) - 1) * var(--separacion)) / (2 * var(--ramas, 4)));
+    right: calc((100% - (var(--columnas, 4) - 1) * var(--separacion)) / (2 * var(--columnas, 4)));
     bottom: auto;
-    left: calc((100% - (var(--ramas, 4) - 1) * var(--separacion)) / (2 * var(--ramas, 4)));
+    left: calc((100% - (var(--columnas, 4) - 1) * var(--separacion)) / (2 * var(--columnas, 4)));
     width: auto;
     height: 1px;
   }
@@ -918,6 +954,9 @@ textarea {
   .rama::before {
     top: calc(var(--tronco) / -2);
     height: calc(var(--tronco) / 2);
+  }
+  .rama--abajo::before {
+    content: none;
   }
 }
 
@@ -1313,10 +1352,6 @@ textarea {
     position: absolute;
     inset: 0;
     border: 1px solid var(--linea-oscura);
-  }
-  .sello .lockup__sub {
-    padding-left: 0.4em;
-    letter-spacing: 0.4em;
   }
 }
 .intro__parrafo {

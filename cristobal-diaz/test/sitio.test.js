@@ -15,6 +15,7 @@ const PAGINAS = [
   'mystery-guest.html',
   'alta-pasteleria.html',
   'pasteleria-de-lujo.html',
+  'cheesecake-y-galletas.html',
   'chef.html',
   'tienda.html',
   'contacto.html',
@@ -215,7 +216,7 @@ test('la tienda muestra precio, cupo, pago en línea y agotado', () => {
   assert.match(tienda, /\$650\.50/);
   assert.match(tienda, /<li>Cupo: 8 lugares<\/li>/);
   assert.match(tienda, /href="https:\/\/mpago\.la\/ejemplo" target="_blank" rel="noopener">Pagar en línea</);
-  assert.match(tienda, /Precio a cotizar/);
+  assert.match(tienda, /Precio por confirmar/);
   assert.match(tienda, /producto__sello">Agotado<[\s\S]*?Lista de espera</);
   const interes = encodeURIComponent('Hola, me interesa: Chocolate y bombonería (Sábado 14 de noviembre).');
   assert.ok(tienda.includes(`href="https://wa.me/523312345678?text=${interes}"`));

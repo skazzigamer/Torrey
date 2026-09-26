@@ -9,7 +9,7 @@ export const MARCA = {
   nombre: 'Cristóbal Díaz',
   submarca: 'Atelier de Cocina',
   descripcion:
-    'Cursos de cocina y pastelería, asesorías para hoteles y restaurantes, Mystery Guest, alta pastelería y pastelería de lujo.',
+    'Cursos de cocina y pastelería, asesorías para hoteles y restaurantes, Mystery Guest, alta pastelería, pastelería de lujo y cheesecake, galletas & más.',
   // Se dedujo de la lada 33; confirmar con el cliente.
   ciudad: 'Guadalajara, Jalisco',
 };
@@ -34,7 +34,7 @@ export const SITIO = {
 
 export const PORTADA = {
   titulo: 'Cristóbal Díaz · Atelier de Cocina | Cursos de cocina, asesorías y alta pastelería',
-  lema: 'Cursos de cocina y pastelería, asesoría para hoteles y restaurantes, Mystery Guest y pastelería de lujo. *Un mismo oficio, un mismo estándar.*',
+  lema: 'Cursos de cocina, asesoría para hoteles y restaurantes, Mystery Guest y pastelería de autor, *del cheesecake de la casa a la alta pastelería*.',
   matriz: {
     antetitulo: 'La casa matriz',
     titulo: 'Un taller de cocina del que nace *todo lo demás*',
@@ -61,8 +61,8 @@ export const PORTADA = {
       antetitulo: 'Para ti',
       titulo: 'Aprende, regala *y celebra*.',
       texto:
-        'Cursos en el atelier, pasteles de autor y regalos hechos a mano con la técnica de la alta pastelería.',
-      servicios: ['cursos', 'pasteleria-de-lujo'],
+        'Cursos en el atelier, cheesecakes y galletas de la casa, y pasteles de autor hechos a mano con la técnica de la alta pastelería.',
+      servicios: ['cursos', 'cheesecake-y-galletas', 'pasteleria-de-lujo'],
       boton: { texto: 'Visitar la tienda', archivo: 'tienda.html' },
       tono: 'claro',
     },
@@ -709,6 +709,80 @@ export const SERVICIOS = [
       mensaje: 'Hola, me gustaría cotizar una pieza de Pastelería de Lujo.',
     },
   },
+  {
+    // Sub-marca con logotipo propio del cliente: "— CHEESECAKE, GALLETAS & MAS —".
+    slug: 'cheesecake-y-galletas',
+    nombre: 'Cheesecake, galletas & más',
+    etiqueta: 'Hechos en el atelier',
+    tituloSeo: 'Cheesecake, galletas y más',
+    descripcionSeo:
+      'Cheesecakes, galletas y más, hechos a mano en el atelier de Cristóbal Díaz con técnica de alta pastelería. Haz tu pedido en línea.',
+    lema: 'Recetas de la casa, hechas a mano con técnica de alta pastelería: *para compartir, regalar o darte un gusto.*',
+    resumen: 'Cheesecakes, galletas y más, hechos a mano en el atelier para pedir en línea.',
+    intro: {
+      titulo: 'Lo clásico, *hecho como se debe*.',
+      parrafos: [
+        'Un buen cheesecake y una buena galleta no necesitan adornos: necesitan buen producto, la temperatura exacta y paciencia.',
+        'Los preparamos en el atelier con el mismo cuidado que cualquier pieza de alta pastelería, para que cada pedido salga igual de bien que el primero.',
+      ],
+      imagen: '', // Ej. 'cheesecake.jpg' (rebanada de cheesecake, caja de galletas)
+      imagenAlt: 'Cheesecake y galletas de Atelier de Cocina',
+      ilustracion: 'cheesecake',
+    },
+    bloques: [
+      {
+        tipo: 'catalogo',
+        categoria: 'cheesecake',
+        antetitulo: 'De la vitrina',
+        titulo: 'Recetas *de la casa*',
+        vacio: 'Muy pronto publicaremos el menú. Mientras tanto, escríbenos para hacer tu pedido.',
+      },
+      {
+        tipo: 'rejilla',
+        antetitulo: 'Para cada ocasión',
+        titulo: 'Para compartir, *regalar o consentirte*',
+        items: [
+          {
+            titulo: 'Para compartir',
+            texto: 'En la sobremesa, en la oficina o en una reunión con amigos.',
+          },
+          {
+            titulo: 'Para regalar',
+            texto: 'Cajas listas para dar un detalle que se recuerda.',
+          },
+          {
+            titulo: 'Para eventos',
+            texto: 'Pedidos grandes y mesas de postres, con anticipación.',
+          },
+        ],
+      },
+      {
+        tipo: 'preguntas',
+        antetitulo: 'Preguntas frecuentes',
+        titulo: 'Antes de *pedir*',
+        items: [
+          {
+            pregunta: '¿Con cuánta anticipación debo pedir?',
+            respuesta: 'Depende del producto y de la cantidad: al recibir tu pedido te confirmamos la fecha de entrega.',
+          },
+          {
+            pregunta: '¿Puedo recoger mi pedido?',
+            respuesta: 'Sí, en el atelier. Si necesitas envío, pregúntanos por la cobertura y el costo.',
+          },
+          {
+            pregunta: '¿Cómo se conservan?',
+            respuesta:
+              'El cheesecake, en refrigeración; las galletas, en un recipiente bien cerrado a temperatura ambiente. Con cada pedido te damos las indicaciones.',
+          },
+        ],
+      },
+    ],
+    cierre: {
+      titulo: 'Haz *tu pedido*',
+      texto: 'Elige tus piezas en la tienda o escríbenos para un pedido especial.',
+      mensaje: 'Hola, quiero hacer un pedido de cheesecake y galletas.',
+    },
+  },
 ];
 
 // Tienda: los productos se agregan a un pedido que el cliente envía por WhatsApp
@@ -731,6 +805,15 @@ export const TIENDA = {
       servicio: 'cursos',
       sinPrecio: 'Precio por anunciar',
       ilustracion: 'batidor',
+    },
+    {
+      id: 'cheesecake',
+      nombre: 'Cheesecake y galletas',
+      singular: 'Cheesecake y galletas',
+      servicio: 'cheesecake-y-galletas',
+      sinPrecio: 'Precio por confirmar',
+      ilustracion: 'cheesecake',
+      entrega: true,
     },
     {
       id: 'pasteleria',
@@ -759,7 +842,7 @@ export const TIENDA = {
 };
 
 // Productos de la tienda. Campos:
-//   id: único, sin espacios · categoria: cursos | pasteleria | regalos · nombre · resumen
+//   id: único, sin espacios · categoria: cursos | cheesecake | pasteleria | regalos · nombre · resumen
 //   detalles: lista corta (nivel, duración, porciones...) · fecha: texto libre, para cursos
 //   precio: número en pesos, o null para mostrar el texto `sinPrecio` de su categoría
 //   desde: true muestra "Desde $…" · unidad: 'por persona', 'caja de 12'...
@@ -814,6 +897,42 @@ export const CATALOGO = [
     ejemplo: true,
   },
   {
+    id: 'cheesecake-clasico',
+    categoria: 'cheesecake',
+    nombre: 'Cheesecake clásico',
+    resumen: 'Cremoso, con base de galleta y horneado lento.',
+    detalles: ['Entero', '10 a 12 porciones'],
+    precio: null,
+    ejemplo: true,
+  },
+  {
+    id: 'cheesecake-frutos-rojos',
+    categoria: 'cheesecake',
+    nombre: 'Cheesecake de frutos rojos',
+    resumen: 'El clásico de la casa con compota de frutos rojos.',
+    detalles: ['Entero', '10 a 12 porciones'],
+    precio: null,
+    ejemplo: true,
+  },
+  {
+    id: 'caja-galletas',
+    categoria: 'cheesecake',
+    nombre: 'Caja de galletas surtidas',
+    resumen: 'Una selección de galletas de la casa, recién horneadas.',
+    detalles: ['12 piezas'],
+    precio: null,
+    ejemplo: true,
+  },
+  {
+    id: 'brownies',
+    categoria: 'cheesecake',
+    nombre: 'Brownies de chocolate',
+    resumen: 'Chocolate intenso, centro húmedo y corteza crujiente.',
+    detalles: ['Caja de 6'],
+    precio: null,
+    ejemplo: true,
+  },
+  {
     id: 'pastel-de-autor',
     categoria: 'pasteleria',
     nombre: 'Pastel de autor',
@@ -828,24 +947,6 @@ export const CATALOGO = [
     nombre: 'Caja de bombones',
     resumen: 'Bombones de autor con rellenos de temporada.',
     detalles: ['12 piezas'],
-    precio: null,
-    ejemplo: true,
-  },
-  {
-    id: 'tarta-temporada',
-    categoria: 'pasteleria',
-    nombre: 'Tarta fina de temporada',
-    resumen: 'Masa sablée, crema ligera y fruta de temporada.',
-    detalles: ['8 a 10 porciones'],
-    precio: null,
-    ejemplo: true,
-  },
-  {
-    id: 'petit-fours',
-    categoria: 'pasteleria',
-    nombre: 'Caja de petit fours',
-    resumen: 'Una selección de piezas pequeñas para regalar o compartir.',
-    detalles: ['24 piezas'],
     precio: null,
     ejemplo: true,
   },
