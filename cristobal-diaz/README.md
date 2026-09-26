@@ -1,6 +1,7 @@
 # Cristóbal Díaz · Atelier de Cocina
 
-Sitio web de la marca matriz y sus cuatro especialidades: **Asesorías
+Sitio web y tienda de la marca matriz: un **taller de cocina** donde se imparten
+**cursos**, y del que salen las demás especialidades: **Asesorías
 profesionales** para hoteles y restaurantes, **Mystery Guest**, **Alta
 Pastelería** y **Pastelería de Lujo**. Es un sitio estático (HTML, CSS y un
 poco de JavaScript), sin dependencias ni `npm install`.
@@ -18,11 +19,13 @@ Requiere Node 20.11 o posterior.
 
 | Página | Archivo | Para quién |
 | --- | --- | --- |
-| Inicio (la matriz) | `index.html` | Presenta el atelier y lleva a cada especialidad; separa hoteles/restaurantes de celebraciones. |
+| Inicio (la matriz) | `index.html` | Presenta el taller y sus especialidades, los próximos cursos y dos caminos: negocios y particulares. |
+| Cursos y talleres | `cursos.html` | Calendario de cursos, para quién son, inscripción, clases privadas y para empresas. |
 | Asesorías profesionales | `asesorias.html` | Hoteles y restaurantes: áreas de trabajo, método, formatos y preguntas. |
 | Mystery Guest | `mystery-guest.html` | Hoteles y restaurantes: qué se evalúa, cómo funciona y qué se entrega. |
-| Alta Pastelería | `alta-pasteleria.html` | Cartas de postres, banquetes, desarrollo de producto y formación. |
-| Pastelería de Lujo | `pasteleria-de-lujo.html` | Bodas, celebraciones, eventos y regalos por encargo. |
+| Alta Pastelería | `alta-pasteleria.html` | Cartas de postres, banquetes, desarrollo de producto y capacitación de equipos. |
+| Pastelería de Lujo | `pasteleria-de-lujo.html` | Piezas de la casa y pedidos por encargo para bodas, eventos y regalos. |
+| Tienda | `tienda.html` | Cursos, pastelería y regalos, con filtros y pedido. |
 | El chef | `chef.html` | Semblanza, trayectoria (opcional) y principios. |
 | Contacto | `contacto.html` | Formulario que arma el mensaje y lo abre en WhatsApp o en el correo. |
 | Aviso de privacidad | `aviso-de-privacidad.html` | Requerido en México al recabar datos personales. |
@@ -36,39 +39,84 @@ se ejecuta `npm run build`. En títulos y párrafos, `*texto*` sale en cursiva.
   correo, Instagram, Facebook y horario. Lo que quede vacío no se muestra;
   sin WhatsApp no aparecen los botones de WhatsApp ni el botón flotante.
 - `SITIO.dominio`: mientras esté vacío el sitio es una **vista previa**: pide a
-  los buscadores no indexarlo y no genera `sitemap.xml` ni la imagen de
-  vista previa al compartir el enlace. Al poner el dominio definitivo se activa
-  todo eso.
-- `SERVICIOS`: una entrada por especialidad (cada una genera su página). Las
+  los buscadores no indexarlo, no genera `sitemap.xml` ni la imagen de vista
+  previa al compartir el enlace, y muestra los productos de ejemplo. Al poner
+  el dominio definitivo se activa todo eso y los ejemplos desaparecen.
+- `SERVICIOS`: una entrada por especialidad; el orden define su número. Las
   secciones se arman con bloques: `rejilla`, `lista`, `pasos`, `destacado`,
-  `etiquetas`, `preguntas` y `nota`.
+  `etiquetas`, `preguntas`, `nota` y `catalogo` (los productos de una
+  categoría de la tienda).
+- `TIENDA` y `CATALOGO`: ver abajo.
 - `CHEF`: la biografía es **provisional**; `trayectoria` queda oculta mientras
   esté vacía.
 - `LEGAL`: responsable y domicilio del aviso de privacidad.
 
 Los textos son una propuesta a partir de lo que envió el cliente: hay que
-validarlos con él, sobre todo las preguntas frecuentes y la diferencia entre
-Alta Pastelería (técnica, formación y servicio a negocios) y Pastelería de Lujo
-(piezas por encargo para particulares y eventos).
+validarlos con él.
+
+## Tienda y pagos
+
+Cada producto tiene un botón **Apartar lugar** (cursos) o **Agregar al
+pedido**. El pedido se guarda en el navegador del cliente mientras navega y se
+envía por **WhatsApp** (o correo) con todo el detalle: productos, cantidades,
+fechas, total y, si hay pastelería, si se recoge o se envía y para qué fecha.
+El atelier confirma disponibilidad y cobra por el medio que prefiera.
+
+Los productos van en `CATALOGO`:
+
+```js
+{
+  id: 'chocolate-bomboneria',       // único, minúsculas y guiones
+  categoria: 'cursos',              // cursos | pasteleria | regalos
+  nombre: 'Chocolate y bombonería',
+  resumen: 'Templado, rellenos y acabados brillantes.',
+  detalles: ['Nivel intermedio', '1 sesión'],
+  fecha: 'Sábado 14 de noviembre, 10:00 h',
+  precio: 1800,                     // null = "Precio por anunciar" / "a cotizar"
+  unidad: 'por persona',
+  cupo: 8,                          // limita cuántos lugares se pueden apartar
+  pago: 'https://mpago.la/…',       // opcional: botón "Pagar en línea"
+  imagen: 'curso-chocolate.jpg',    // opcional, en recursos/img/
+}
+```
+
+- `desde: true` muestra "Desde $…"; `agotado: true` cambia el botón por
+  **Lista de espera**.
+- Un curso con varias fechas se registra una vez por fecha.
+- **Los 9 productos actuales son ejemplos** (`ejemplo: true`): solo se ven en
+  la vista previa y nunca se publican con dominio. Hay que reemplazarlos por
+  los cursos, piezas y precios reales del cliente.
+- **Cobro en línea sin programar nada**: en Mercado Pago ("Link de pago") o en
+  Stripe ("Payment Links") se crea un enlace por producto con su precio y se
+  pega en `pago`. El cliente paga en la página segura de Mercado Pago o Stripe
+  (con tarjeta y, según la cuenta, en OXXO o por transferencia).
+- `TIENDA.pagos` y `TIENDA.entregas` describen formas de pago y zona de entrega;
+  se muestran en la tienda y en el pedido.
+- Si más adelante se necesita cobrar el carrito completo en línea o controlar
+  inventario, el siguiente paso es una plataforma de tienda (Shopify,
+  Tiendanube) o un pequeño servidor con Mercado Pago Checkout Pro.
 
 ## Fotos
 
 Mientras no haya fotos, cada espacio muestra una ilustración de línea (un
-plato, un pastel o el monograma del chef). Para usar una foto se copia a
-`recursos/img/` y se escribe el nombre del archivo en `contenido.js`. Si el
-archivo no existe, la compilación avisa y deja la ilustración.
+batidor, un plato, un pastel, una caja de regalo o el monograma del chef). Para
+usar una foto se copia a `recursos/img/` y se escribe el nombre del archivo en
+`contenido.js`. Si el archivo no existe, la compilación avisa y deja la
+ilustración.
 
 | Dónde | Campo | Foto sugerida |
 | --- | --- | --- |
-| Asesorías | `SERVICIOS[0].intro.imagen` | El chef con un equipo en cocina o revisando una carta. |
-| Mystery Guest | `SERVICIOS[1].intro.imagen` | Mesa servida o detalle de servicio, sin rostros de clientes. |
-| Alta Pastelería | `SERVICIOS[2].intro.imagen` | Postre emplatado o entremet. |
-| Pastelería de Lujo | `SERVICIOS[3].intro.imagen` | Pastel de autor o caja de regalo. |
+| Cursos | `SERVICIOS[0].intro.imagen` | El chef enseñando a un grupo en el taller. |
+| Asesorías | `SERVICIOS[1].intro.imagen` | El chef con un equipo en cocina o revisando una carta. |
+| Mystery Guest | `SERVICIOS[2].intro.imagen` | Mesa servida o detalle de servicio, sin rostros de clientes. |
+| Alta Pastelería | `SERVICIOS[3].intro.imagen` | Postre emplatado o entremet. |
+| Pastelería de Lujo | `SERVICIOS[4].intro.imagen` | Pastel de autor o caja de regalo. |
+| Productos | `CATALOGO[].imagen` | Una foto por curso o pieza, horizontal 4:3. |
 | El chef | `CHEF.imagen` | Retrato vertical del chef. |
 | Firma | `CHEF.firma` | La firma del logotipo en negro, PNG o SVG con fondo transparente. |
 
-Formato vertical 4:5 (por ejemplo 1200 × 1500 px), en JPG o WebP de menos
-de 300 KB.
+Formato vertical 4:5 para las especialidades y el chef (por ejemplo 1200 × 1500
+px) y horizontal 4:3 para los productos, en JPG o WebP de menos de 300 KB.
 
 ## Logotipo
 
@@ -93,17 +141,20 @@ los archivos originales en vector, conviene reemplazar esas tres imágenes.
 Antes de publicar:
 
 1. Completar WhatsApp y correo; `npm run build` enumera lo pendiente.
-2. Poner `SITIO.dominio`.
-3. Completar `LEGAL.domicilio` y revisar el aviso de privacidad con el cliente.
-4. Validar los textos y cargar las fotos.
+2. Cargar los cursos y productos reales con sus precios, y las formas de pago.
+3. Poner `SITIO.dominio`.
+4. Completar `LEGAL.domicilio` y revisar el aviso de privacidad con el cliente.
+5. Validar los textos y cargar las fotos.
 
 ## Notas técnicas
 
 - Las tipografías (Poppins y Cormorant Garamond, licencia SIL Open Font) se
-  alojan en el propio sitio: no hay peticiones a Google ni cookies. Si más
-  adelante se agrega analítica, hay que actualizar el aviso de privacidad.
-- Sin JavaScript todo el contenido queda visible; el script solo agrega el menú
-  móvil, las animaciones y el envío del formulario.
+  alojan en el propio sitio: no hay peticiones a Google ni cookies. El pedido
+  se guarda en el almacenamiento local del navegador y el aviso de privacidad
+  lo explica. Si más adelante se agrega analítica, hay que actualizar el aviso.
+- Sin JavaScript todo el contenido queda visible y los botones de compra abren
+  WhatsApp (o el formulario) con el producto; el script agrega el pedido, el
+  menú móvil, los filtros, las animaciones y el envío de formularios.
 - Respeta la preferencia de "reducir movimiento" del sistema.
 - `text-rendering: geometricPrecision` en `body` evita que Chrome en Linux
   abra huecos después de la "t" de Poppins.

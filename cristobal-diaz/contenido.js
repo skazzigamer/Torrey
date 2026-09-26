@@ -1,7 +1,7 @@
 // Todo el texto y los datos del sitio. Edita aqui y ejecuta `npm run build`.
 //
-// Los textos son una propuesta a partir de lo que envio el cliente
-// (matriz + cuatro especialidades): hay que validarlos con el.
+// Los textos son una propuesta a partir de lo que envio el cliente (la matriz,
+// sus especialidades y el taller donde dara cursos): hay que validarlos con el.
 // En titulos y parrafos, *texto* se muestra en cursiva.
 // Las imagenes van en recursos/img/ y aqui solo se escribe el nombre del archivo.
 
@@ -9,7 +9,7 @@ export const MARCA = {
   nombre: 'Cristóbal Díaz',
   submarca: 'Atelier de Cocina',
   descripcion:
-    'Asesorías profesionales para hoteles y restaurantes, Mystery Guest, alta pastelería y pastelería de lujo.',
+    'Cursos de cocina y pastelería, asesorías para hoteles y restaurantes, Mystery Guest, alta pastelería y pastelería de lujo.',
   // Se dedujo de la lada 33; confirmar con el cliente.
   ciudad: 'Guadalajara, Jalisco',
 };
@@ -33,13 +33,19 @@ export const SITIO = {
 };
 
 export const PORTADA = {
-  titulo: 'Cristóbal Díaz · Atelier de Cocina | Asesorías, Mystery Guest y Alta Pastelería',
-  lema: 'Asesoría para hoteles y restaurantes, Mystery Guest, alta pastelería y pastelería de lujo. *Un mismo oficio, un mismo estándar.*',
+  titulo: 'Cristóbal Díaz · Atelier de Cocina | Cursos de cocina, asesorías y alta pastelería',
+  lema: 'Cursos de cocina y pastelería, asesoría para hoteles y restaurantes, Mystery Guest y pastelería de lujo. *Un mismo oficio, un mismo estándar.*',
   matriz: {
     antetitulo: 'La casa matriz',
-    titulo: 'Un atelier del que nacen *cuatro especialidades*',
+    titulo: 'Un taller de cocina del que nace *todo lo demás*',
     texto:
-      'Atelier de Cocina es el taller de Cristóbal Díaz: el lugar donde se prueba, se corrige y se afina cada detalle hasta que está a la altura. De esa misma disciplina nacen cuatro especialidades, pensadas para quienes viven de la hospitalidad y para quienes quieren celebrar con lo mejor.',
+      'Atelier de Cocina es el taller de Cristóbal Díaz: un espacio para cocinar, enseñar y afinar cada detalle hasta que está a la altura. Ahí se imparten los cursos y de ahí salen las demás especialidades, pensadas para quienes viven de la hospitalidad y para quienes quieren aprender, regalar y celebrar con lo mejor.',
+  },
+  // Muestra hasta tres cursos del catalogo en la portada.
+  cursos: {
+    antetitulo: 'En el taller',
+    titulo: 'Próximos *cursos*',
+    texto: 'Clases de cocina y pastelería para aficionados y profesionales. Aparta tu lugar desde la tienda.',
   },
   publicos: [
     {
@@ -47,26 +53,24 @@ export const PORTADA = {
       titulo: 'Que tu operación esté a la altura de *lo que prometes*.',
       texto:
         'Diagnóstico, estrategia y acompañamiento en cocina y servicio, y una mirada externa que te dice la verdad sobre la experiencia de tus clientes.',
-      servicios: ['asesorias', 'mystery-guest'],
-      boton: 'Agendar un diagnóstico',
-      servicio: 'asesorias',
+      servicios: ['asesorias', 'mystery-guest', 'alta-pasteleria'],
+      boton: { texto: 'Agendar un diagnóstico', archivo: 'contacto.html?servicio=asesorias' },
       tono: 'oscuro',
     },
     {
-      antetitulo: 'Para tus celebraciones',
-      titulo: 'Piezas únicas para *momentos irrepetibles*.',
+      antetitulo: 'Para ti',
+      titulo: 'Aprende, regala *y celebra*.',
       texto:
-        'Pasteles de autor, mesas de postres y regalos hechos a mano con la técnica de la alta pastelería.',
-      servicios: ['pasteleria-de-lujo', 'alta-pasteleria'],
-      boton: 'Cotizar una pieza',
-      servicio: 'pasteleria-de-lujo',
+        'Cursos en el atelier, pasteles de autor y regalos hechos a mano con la técnica de la alta pastelería.',
+      servicios: ['cursos', 'pasteleria-de-lujo'],
+      boton: { texto: 'Visitar la tienda', archivo: 'tienda.html' },
       tono: 'claro',
     },
   ],
   cierre: {
     titulo: '¿Tienes un proyecto *en mente*?',
     texto:
-      'Cuéntanos qué necesitas —una asesoría, una evaluación o una pieza especial— y te respondemos personalmente.',
+      'Cuéntanos qué necesitas —un curso, una asesoría, una evaluación o una pieza especial— y te respondemos personalmente.',
     mensaje: 'Hola, me gustaría recibir información sobre Atelier de Cocina.',
   },
 };
@@ -94,14 +98,127 @@ export const PRINCIPIOS = {
   ],
 };
 
-// Cada especialidad genera su propia pagina (<slug>.html).
-// Tipos de bloque: rejilla, lista, pasos, destacado, etiquetas, preguntas, nota.
+// Cada especialidad genera su propia pagina (<slug>.html); el orden define su numero.
+// Tipos de bloque: rejilla, lista, pasos, destacado, etiquetas, preguntas, nota y
+// catalogo (muestra los productos de CATALOGO de una categoria).
 export const SERVICIOS = [
   {
+    slug: 'cursos',
+    nombre: 'Cursos y talleres',
+    etiqueta: 'Taller de cocina',
+    tituloSeo: 'Cursos de cocina y pastelería',
+    descripcionSeo:
+      'Cursos y talleres de cocina y pastelería con el chef Cristóbal Díaz: clases para aficionados y profesionales, clases privadas y experiencias para empresas.',
+    lema: 'Aprende en la cocina de un chef: técnica profesional explicada paso a paso, *para llevarla a tu propia mesa*.',
+    resumen: 'Clases de cocina y pastelería en el atelier, para aficionados y profesionales.',
+    intro: {
+      titulo: 'El atelier también *es escuela*.',
+      parrafos: [
+        'Atelier de Cocina es, antes que nada, un taller: un espacio de trabajo donde se cocina, se prueba y se enseña.',
+        'Los cursos llevan la disciplina de la cocina profesional a quienes quieren aprender en serio, sin importar su nivel: explicamos el porqué de cada técnica para que el resultado también salga en casa.',
+      ],
+      imagen: '', // Ej. 'cursos.jpg' (el chef enseñando a un grupo en el taller)
+      imagenAlt: 'Clase de cocina en el taller de Cristóbal Díaz',
+      ilustracion: 'batidor',
+    },
+    bloques: [
+      {
+        tipo: 'catalogo',
+        categoria: 'cursos',
+        antetitulo: 'Calendario',
+        titulo: 'Próximos *cursos*',
+        vacio: 'Muy pronto anunciaremos nuevas fechas. Escríbenos para apartar tu lugar.',
+      },
+      {
+        tipo: 'lista',
+        antetitulo: 'Para quién',
+        titulo: 'Para quienes quieren *aprender en serio*',
+        items: [
+          'Aficionados que quieren dominar la técnica',
+          'Profesionales que buscan perfeccionarse',
+          'Equipos de cocina de hoteles y restaurantes',
+          'Empresas que buscan una experiencia de integración',
+          'Grupos y celebraciones privadas',
+          'Quien quiere regalar una experiencia',
+        ],
+      },
+      {
+        tipo: 'pasos',
+        antetitulo: 'Inscripción',
+        titulo: 'Cómo *inscribirte*',
+        items: [
+          {
+            titulo: 'Elige tu curso',
+            texto: 'Revisa el nivel, la duración y la fecha de cada curso.',
+          },
+          {
+            titulo: 'Aparta tu lugar',
+            texto: 'Agrégalo a tu pedido y envíalo por WhatsApp, o paga en línea cuando esté disponible.',
+          },
+          {
+            titulo: 'Confirmación',
+            texto: 'Te confirmamos tu lugar y te enviamos las indicaciones del curso.',
+          },
+          {
+            titulo: 'A cocinar',
+            texto: 'Te esperamos en el atelier con todo listo para empezar.',
+          },
+        ],
+      },
+      {
+        tipo: 'rejilla',
+        antetitulo: 'A la medida',
+        titulo: 'Clases privadas *y para empresas*',
+        items: [
+          {
+            titulo: 'Clases privadas',
+            texto: 'Una clase para ti y tus invitados, con el menú o la técnica que elijas.',
+          },
+          {
+            titulo: 'Equipos de trabajo',
+            texto: 'Experiencias de cocina para integrar equipos y celebrar logros.',
+          },
+          {
+            titulo: 'Capacitación profesional',
+            texto: 'Programas de cocina y pastelería para brigadas de hoteles y restaurantes.',
+          },
+        ],
+      },
+      {
+        tipo: 'preguntas',
+        antetitulo: 'Preguntas frecuentes',
+        titulo: 'Antes de *inscribirte*',
+        items: [
+          {
+            pregunta: '¿Necesito experiencia previa?',
+            respuesta:
+              'Cada curso indica su nivel. Los de nivel principiante no requieren experiencia: empezamos desde lo básico.',
+          },
+          {
+            pregunta: '¿Qué debo llevar?',
+            respuesta: 'Al confirmar tu lugar te enviamos las indicaciones de cada curso.',
+          },
+          {
+            pregunta: '¿Puedo regalar un curso?',
+            respuesta: 'Sí, con una tarjeta de regalo. Pregúntanos por los montos disponibles.',
+          },
+          {
+            pregunta: '¿Qué pasa si no puedo asistir?',
+            respuesta:
+              'Avísanos lo antes posible: te diremos las opciones según el curso y la anticipación con que nos escribas.',
+          },
+        ],
+      },
+    ],
+    cierre: {
+      titulo: 'Aparta *tu lugar*',
+      texto: 'Escríbenos para conocer las próximas fechas o para organizar una clase privada.',
+      mensaje: 'Hola, me interesan los cursos del atelier.',
+    },
+  },
+  {
     slug: 'asesorias',
-    numero: '01',
     nombre: 'Asesorías profesionales',
-    menu: 'Asesorías',
     etiqueta: 'Hoteles y restaurantes',
     tituloSeo: 'Asesorías para hoteles y restaurantes',
     descripcionSeo:
@@ -246,9 +363,7 @@ export const SERVICIOS = [
   },
   {
     slug: 'mystery-guest',
-    numero: '02',
     nombre: 'Mystery Guest',
-    menu: 'Mystery Guest',
     etiqueta: 'Evaluación anónima',
     tituloSeo: 'Mystery Guest para restaurantes y hoteles',
     descripcionSeo:
@@ -377,15 +492,13 @@ export const SERVICIOS = [
   },
   {
     slug: 'alta-pasteleria',
-    numero: '03',
     nombre: 'Alta Pastelería',
-    menu: 'Alta Pastelería',
-    etiqueta: 'Técnica y formación',
+    etiqueta: 'Para restaurantes y hoteles',
     tituloSeo: 'Alta pastelería para restaurantes, hoteles y profesionales',
     descripcionSeo:
-      'Alta pastelería de autor: cartas de postres para restaurantes y hoteles, pastelería para banquetes, desarrollo de producto y formación de equipos.',
+      'Alta pastelería de autor: cartas de postres para restaurantes y hoteles, pastelería para banquetes, desarrollo de producto y capacitación de equipos.',
     lema: 'Precisión, técnica y sabor: la pastelería entendida como *un oficio de autor*.',
-    resumen: 'Postres de autor, cartas de postres para restaurantes y hoteles, y formación de equipos.',
+    resumen: 'Cartas de postres, pastelería para banquetes y desarrollo de producto para negocios.',
     intro: {
       titulo: 'La alta pastelería *no admite atajos*.',
       parrafos: [
@@ -415,8 +528,8 @@ export const SERVICIOS = [
             texto: 'Nuevas piezas y líneas de pastelería para cafeterías, pastelerías y marcas.',
           },
           {
-            titulo: 'Formación',
-            texto: 'Cursos y clases magistrales para equipos de cocina y profesionales de la pastelería.',
+            titulo: 'Capacitación de equipos',
+            texto: 'Programas de pastelería para brigadas de hoteles y restaurantes, en su cocina o en el atelier.',
           },
         ],
       },
@@ -484,9 +597,7 @@ export const SERVICIOS = [
   },
   {
     slug: 'pasteleria-de-lujo',
-    numero: '04',
     nombre: 'Pastelería de Lujo',
-    menu: 'Pastelería de Lujo',
     etiqueta: 'Piezas por encargo',
     tituloSeo: 'Pastelería de lujo por encargo',
     descripcionSeo:
@@ -504,6 +615,13 @@ export const SERVICIOS = [
       ilustracion: 'pastel',
     },
     bloques: [
+      {
+        tipo: 'catalogo',
+        categoria: 'pasteleria',
+        antetitulo: 'Piezas de la casa',
+        titulo: 'Para pedir *desde la tienda*',
+        vacio: 'Pronto publicaremos nuestras piezas de la casa. Mientras tanto, cuéntanos qué necesitas.',
+      },
       {
         tipo: 'rejilla',
         antetitulo: 'Ocasiones',
@@ -590,6 +708,155 @@ export const SERVICIOS = [
       texto: 'Cuéntanos la fecha, el número de invitados y la idea que tienes en mente.',
       mensaje: 'Hola, me gustaría cotizar una pieza de Pastelería de Lujo.',
     },
+  },
+];
+
+// Tienda: los productos se agregan a un pedido que el cliente envía por WhatsApp
+// (o correo). Para cobrar en línea, crea un "link de pago" en Mercado Pago o Stripe
+// y pégalo en el campo `pago` del producto.
+export const TIENDA = {
+  tituloSeo: 'Tienda: cursos, pastelería y regalos',
+  descripcionSeo:
+    'Cursos de cocina y pastelería, piezas de la casa y tarjetas de regalo de Atelier de Cocina. Arma tu pedido y envíalo por WhatsApp.',
+  titulo: 'La tienda *del atelier*',
+  lema: 'Cursos, piezas de pastelería y regalos. Arma tu pedido y envíalo: *te confirmamos disponibilidad y forma de pago.*',
+  moneda: 'MXN',
+  pagos: '', // Formas de pago. Ej. 'Transferencia, tarjeta o efectivo.'
+  entregas: '', // Ej. 'Entregas en Guadalajara y Zapopan, o recoge en el atelier.'
+  categorias: [
+    {
+      id: 'cursos',
+      nombre: 'Cursos',
+      singular: 'Curso',
+      servicio: 'cursos',
+      sinPrecio: 'Precio por anunciar',
+      ilustracion: 'batidor',
+    },
+    {
+      id: 'pasteleria',
+      nombre: 'Pastelería',
+      singular: 'Pastelería',
+      servicio: 'pasteleria-de-lujo',
+      sinPrecio: 'Precio a cotizar',
+      ilustracion: 'pastel',
+      entrega: true, // el pedido pregunta si se recoge o se envía
+    },
+    {
+      id: 'regalos',
+      nombre: 'Regalos',
+      singular: 'Regalo',
+      servicio: '',
+      sinPrecio: 'Tú eliges el monto',
+      ilustracion: 'caja',
+    },
+  ],
+  pasos: [
+    { titulo: 'Elige', texto: 'Agrega a tu pedido los cursos y las piezas que quieras.' },
+    { titulo: 'Envía tu pedido', texto: 'Mándalo por WhatsApp con un clic: ya va con todo el detalle.' },
+    { titulo: 'Confirmamos', texto: 'Te respondemos con la disponibilidad, el total y la forma de pago.' },
+    { titulo: 'Disfruta', texto: 'Recoge o recibe tu pedido, o te esperamos en el taller.' },
+  ],
+};
+
+// Productos de la tienda. Campos:
+//   id: único, sin espacios · categoria: cursos | pasteleria | regalos · nombre · resumen
+//   detalles: lista corta (nivel, duración, porciones...) · fecha: texto libre, para cursos
+//   precio: número en pesos, o null para mostrar el texto `sinPrecio` de su categoría
+//   desde: true muestra "Desde $…" · unidad: 'por persona', 'caja de 12'...
+//   cupo: lugares del curso (limita la cantidad) · agotado: true ofrece lista de espera
+//   pago: link de pago de Mercado Pago o Stripe (muestra "Pagar en línea")
+//   imagen: archivo en recursos/img/
+//   ejemplo: true = propuesta para la vista previa; nunca se publica con dominio.
+// Todos los productos de abajo son ejemplos: reemplazarlos con los del cliente.
+export const CATALOGO = [
+  {
+    id: 'fundamentos-pasteleria',
+    categoria: 'cursos',
+    nombre: 'Fundamentos de pastelería francesa',
+    resumen: 'Masas, cremas y montajes clásicos: la base de toda la alta pastelería.',
+    detalles: ['Nivel principiante', '3 sesiones'],
+    fecha: '',
+    precio: null,
+    unidad: 'por persona',
+    ejemplo: true,
+  },
+  {
+    id: 'chocolate-bomboneria',
+    categoria: 'cursos',
+    nombre: 'Chocolate y bombonería',
+    resumen: 'Templado, rellenos y acabados brillantes para bombones de autor.',
+    detalles: ['Nivel intermedio', '1 sesión'],
+    fecha: '',
+    precio: null,
+    unidad: 'por persona',
+    ejemplo: true,
+  },
+  {
+    id: 'pan-viennoiserie',
+    categoria: 'cursos',
+    nombre: 'Pan y viennoiserie',
+    resumen: 'Croissants, brioche y masas laminadas, paso a paso.',
+    detalles: ['Nivel intermedio', '2 sesiones'],
+    fecha: '',
+    precio: null,
+    unidad: 'por persona',
+    ejemplo: true,
+  },
+  {
+    id: 'postres-emplatados',
+    categoria: 'cursos',
+    nombre: 'Postres emplatados',
+    resumen: 'Composición, texturas y montaje de postres de restaurante.',
+    detalles: ['Nivel profesional', '1 sesión'],
+    fecha: '',
+    precio: null,
+    unidad: 'por persona',
+    ejemplo: true,
+  },
+  {
+    id: 'pastel-de-autor',
+    categoria: 'pasteleria',
+    nombre: 'Pastel de autor',
+    resumen: 'Diseñado a partir de tu idea, con los sabores que elijas.',
+    detalles: ['Por encargo', 'De 10 a 50 personas'],
+    precio: null,
+    ejemplo: true,
+  },
+  {
+    id: 'caja-bombones',
+    categoria: 'pasteleria',
+    nombre: 'Caja de bombones',
+    resumen: 'Bombones de autor con rellenos de temporada.',
+    detalles: ['12 piezas'],
+    precio: null,
+    ejemplo: true,
+  },
+  {
+    id: 'tarta-temporada',
+    categoria: 'pasteleria',
+    nombre: 'Tarta fina de temporada',
+    resumen: 'Masa sablée, crema ligera y fruta de temporada.',
+    detalles: ['8 a 10 porciones'],
+    precio: null,
+    ejemplo: true,
+  },
+  {
+    id: 'petit-fours',
+    categoria: 'pasteleria',
+    nombre: 'Caja de petit fours',
+    resumen: 'Una selección de piezas pequeñas para regalar o compartir.',
+    detalles: ['24 piezas'],
+    precio: null,
+    ejemplo: true,
+  },
+  {
+    id: 'tarjeta-regalo',
+    categoria: 'regalos',
+    nombre: 'Tarjeta de regalo',
+    resumen: 'Regala un curso o una pieza de la casa.',
+    detalles: ['Válida para cursos y pastelería'],
+    precio: null,
+    ejemplo: true,
   },
 ];
 

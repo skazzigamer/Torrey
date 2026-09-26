@@ -99,6 +99,6 @@ distribuidor autorizado).
 
 ## Otros proyectos en este repositorio
 
-- [`cristobal-diaz/`](cristobal-diaz/): sitio web de Cristóbal Díaz · Atelier de
-  Cocina. Es independiente del catálogo; su README explica cómo editarlo y
-  publicarlo.
+- [`cristobal-diaz/`](cristobal-diaz/): sitio web y tienda de Cristóbal Díaz ·
+  Atelier de Cocina (cursos, especialidades y pedidos por WhatsApp). Es
+  independiente del catálogo; su README explica cómo editarlo y publicarlo.

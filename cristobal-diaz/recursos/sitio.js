@@ -1,4 +1,4 @@
-// Comportamiento del sitio: menu movil, cabecera, aparicion de bloques y formulario de contacto.
+// Comportamiento del sitio: menu movil y submenu, cabecera, aparicion de bloques y formulario de contacto.
 (() => {
   const raiz = document.documentElement;
   const cabecera = document.getElementById('cabecera');
@@ -17,7 +17,11 @@
     });
   };
   if (boton && menu) {
-    boton.addEventListener('click', () => alternarMenu(boton.getAttribute('aria-expanded') !== 'true'));
+    boton.addEventListener('click', () => {
+      const abrir = boton.getAttribute('aria-expanded') !== 'true';
+      alternarMenu(abrir);
+      if (abrir) menu.querySelector('a')?.focus();
+    });
     menu.addEventListener('click', (evento) => {
       if (evento.target.closest('a')) alternarMenu(false);
     });
@@ -28,6 +32,28 @@
     });
     window.matchMedia('(min-width: 1100px)').addEventListener('change', () => alternarMenu(false));
   }
+
+  // Submenu de especialidades (en escritorio se despliega; en el menu movil siempre esta abierto).
+  document.querySelectorAll('.menu__grupo').forEach((grupo) => {
+    const desplegar = grupo.querySelector('.menu__desplegar');
+    const alternar = (abrir) => {
+      desplegar.setAttribute('aria-expanded', String(abrir));
+      grupo.classList.toggle('menu__grupo--abierto', abrir);
+    };
+    desplegar.addEventListener('click', () => alternar(desplegar.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('click', (evento) => {
+      if (!grupo.contains(evento.target)) alternar(false);
+    });
+    grupo.addEventListener('keydown', (evento) => {
+      if (evento.key !== 'Escape' || desplegar.getAttribute('aria-expanded') !== 'true') return;
+      evento.stopPropagation();
+      alternar(false);
+      desplegar.focus();
+    });
+    grupo.addEventListener('focusout', (evento) => {
+      if (!grupo.contains(evento.relatedTarget)) alternar(false);
+    });
+  });
 
   // Cabecera: linea inferior al desplazarse. En la portada, la marca aparece cuando sale de vista el logotipo grande.
   if (cabecera) {
@@ -78,15 +104,8 @@
     if (estado) estado.textContent = texto;
   };
   const valor = (nombre) => (formulario.elements[nombre]?.value || '').trim();
-  const fechaLarga = (iso) => {
-    const [anio, mes, dia] = iso.split('-').map(Number);
-    if (!anio || !mes || !dia) return iso;
-    return new Date(anio, mes - 1, dia).toLocaleDateString('es-MX', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  };
+  // pedido.js se carga antes que este archivo; si faltara, la fecha va tal cual.
+  const fechaLarga = window.AtelierPedido?.fechaLarga ?? ((iso) => iso);
 
   formulario.addEventListener('submit', (evento) => {
     evento.preventDefault();

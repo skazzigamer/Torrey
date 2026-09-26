@@ -48,6 +48,17 @@ export function fechaLarga(iso) {
   );
 }
 
+// Mismo formato que pedido.js en el navegador: $1,800 o $1,800.50.
+export function formatoPrecio(valor, moneda = 'MXN') {
+  const entero = Number.isInteger(valor);
+  return new Intl.NumberFormat('es-MX', {
+    style: 'currency',
+    currency: moneda,
+    minimumFractionDigits: entero ? 0 : 2,
+    maximumFractionDigits: entero ? 0 : 2,
+  }).format(valor);
+}
+
 const json = (objeto) => JSON.stringify(objeto).replace(/</g, '\\u003c');
 const nombreSitio = ({ marca }) => `${marca.nombre} · ${marca.submarca}`;
 const numero = (i) => String(i + 1).padStart(2, '0');
@@ -70,6 +81,14 @@ function flor(clase = '') {
 const FLECHA =
   '<svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg>';
 
+const CHEVRON =
+  '<svg class="chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>';
+
+const CERRAR =
+  '<svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+
+const OPCIONAL = '<span class="campo__opcional">(opcional)</span>';
+
 const icono = (contenido) => `<svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${contenido}</svg>`;
 
 const ICONOS = {
@@ -88,6 +107,7 @@ const ICONOS = {
   ),
   ubicacion: icono('<path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>'),
   reloj: icono('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  bolsa: icono('<path d="M5.5 8h13l-1.1 12.5H6.6Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>'),
 };
 
 // Ilustraciones de linea que ocupan el lugar de las fotos mientras el cliente las envia.
@@ -105,6 +125,22 @@ const ILUSTRACIONES = {
   <rect x="148" y="238" width="104" height="64" rx="3"/>
   <path class="ilustracion__tenue" d="M148 252q13 12 26 0t26 0 26 0 26 0"/>
   <path class="ilustracion__flor" transform="translate(200 214) scale(1.15)" d="${FLOR}"/>
+</svg>`,
+  batidor: `<svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
+  <path d="M200 312C132 232 138 104 200 84c62 20 68 148 0 228Z"/>
+  <path class="ilustracion__tenue" d="M200 312c-40-76-38-202 0-228 38 26 40 152 0 228Z"/>
+  <path class="ilustracion__tenue" d="M200 312c-14-72-14-200 0-228 14 28 14 156 0 228Z"/>
+  <path d="M182 312h36"/>
+  <rect x="190" y="312" width="20" height="112" rx="10"/>
+  <path class="ilustracion__flor" transform="translate(200 456) scale(.7)" d="${FLOR}"/>
+</svg>`,
+  caja: `<svg class="ilustracion" viewBox="0 0 400 500" aria-hidden="true" focusable="false">
+  <rect x="122" y="238" width="156" height="148" rx="3"/>
+  <rect x="110" y="204" width="180" height="34" rx="3"/>
+  <path class="ilustracion__tenue" d="M192 204v182M208 204v182"/>
+  <path d="M200 204c-18-34-60-42-58-14 2 20 38 18 58 14Zm0 0c18-34 60-42 58-14-2 20-38 18-58 14Z"/>
+  <circle class="ilustracion__sello" cx="200" cy="312" r="23"/>
+  <path class="ilustracion__flor" transform="translate(200 312) scale(.95)" d="${FLOR}"/>
 </svg>`,
 };
 
@@ -237,6 +273,161 @@ function tarjetasServicios(ctx, servicios, { compactas = false } = {}) {
     .join('\n      ');
 }
 
+const categoriaDe = (ctx, id) => ctx.tienda.categorias.find((c) => c.id === id);
+
+function precioProducto(ctx, p, categoria) {
+  if (p.precio == null) return `<span class="producto__cotizar">${escapar(categoria.sinPrecio)}</span>`;
+  const unidad = [ctx.tienda.moneda, p.unidad].filter(Boolean).join(' · ');
+  return `${p.desde ? '<span class="producto__desde">Desde</span> ' : ''}<span class="producto__monto">${escapar(
+    formatoPrecio(p.precio, ctx.tienda.moneda),
+  )}</span> <span class="producto__unidad">${escapar(unidad)}</span>`;
+}
+
+// Sin JavaScript, "Agregar" abre WhatsApp (o el formulario) con el producto; con JavaScript lo suma al pedido.
+function accionesProducto(ctx, p, categoria) {
+  const { contacto, prefijo } = ctx;
+  const referencia = `${p.nombre}${p.fecha ? ` (${p.fecha})` : ''}`;
+  const formulario = `${prefijo}contacto.html${categoria.servicio ? `?servicio=${encodeURIComponent(categoria.servicio)}` : ''}`;
+  const enlace = (href, clase, texto, extra = '') =>
+    `<a class="boton ${clase}" href="${escapar(href)}"${href.startsWith('https:') ? ' target="_blank" rel="noopener"' : ''}${extra}>${texto}</a>`;
+  if (p.agotado) {
+    const espera = enlaceWhatsApp(contacto.whatsapp, `Hola, quiero entrar a la lista de espera de: ${referencia}.`);
+    return enlace(espera || formulario, 'boton--linea', 'Lista de espera');
+  }
+  const interes = enlaceWhatsApp(contacto.whatsapp, `Hola, me interesa: ${referencia}.`);
+  const agregar = enlace(
+    interes || formulario,
+    'boton--oscuro',
+    p.categoria === 'cursos' ? 'Apartar lugar' : 'Agregar al pedido',
+    ` data-agregar="${escapar(p.id)}"`,
+  );
+  return p.pago ? `${agregar}${enlace(p.pago, 'boton--linea', 'Pagar en línea')}` : agregar;
+}
+
+function tarjetaProducto(ctx, p, i) {
+  const categoria = categoriaDe(ctx, p.categoria);
+  const detalles = [...p.detalles, p.fecha || (p.categoria === 'cursos' ? 'Fecha por anunciar' : '')];
+  if (p.cupo && !p.agotado) detalles.push(`Cupo: ${p.cupo} lugares`);
+  const medio = p.imagen
+    ? `<img src="${ctx.prefijo}assets/img/${escapar(p.imagen)}" alt="${escapar(p.nombre)}" loading="lazy" decoding="async">`
+    : ILUSTRACIONES[categoria.ilustracion] || ILUSTRACIONES.plato;
+  return `<li class="producto" data-categoria="${escapar(p.categoria)}" data-revelar style="--retraso:${i % 3}">
+        <div class="producto__medio${p.imagen ? '' : ' producto__medio--vacio'}">${medio}${
+          p.agotado ? '<span class="producto__sello">Agotado</span>' : ''
+        }</div>
+        <div class="producto__cuerpo">
+          <p class="producto__categoria">${escapar(categoria.singular)}</p>
+          <h3 class="producto__nombre">${escapar(p.nombre)}</h3>
+          ${p.resumen ? `<p class="producto__resumen">${enriquecer(p.resumen)}</p>` : ''}
+          <ul class="producto__detalles">${detalles
+            .filter(Boolean)
+            .map((d) => `<li>${escapar(d)}</li>`)
+            .join('')}</ul>
+          <p class="producto__precio">${precioProducto(ctx, p, categoria)}</p>
+          <div class="producto__acciones">${accionesProducto(ctx, p, categoria)}</div>
+        </div>
+      </li>`;
+}
+
+function listaProductos(ctx, productos, { vacio = '' } = {}) {
+  if (!productos.length) {
+    const escribir =
+      botonWhatsApp(ctx, 'Hola, quiero información sobre los cursos y la tienda del atelier.', 'boton--oscuro') ||
+      `<a class="boton boton--oscuro" href="${ctx.prefijo}contacto.html">Escríbenos</a>`;
+    return `<div class="vacio" data-revelar>${flor()}<p>${enriquecer(vacio)}</p>${escribir}</div>`;
+  }
+  return `<ul class="productos">
+      ${productos.map((p, i) => tarjetaProducto(ctx, p, i)).join('\n      ')}
+    </ul>`;
+}
+
+// Lo que pedido.js necesita saber de cada producto para armar el pedido en cualquier pagina.
+function datosCatalogo(ctx) {
+  const productos = {};
+  for (const p of ctx.catalogo) {
+    if (p.agotado) continue;
+    productos[p.id] = {
+      nombre: p.nombre,
+      precio: p.precio ?? null,
+      fecha: p.fecha || '',
+      unidad: p.unidad || '',
+      maximo: p.cupo || 20,
+      entrega: Boolean(categoriaDe(ctx, p.categoria).entrega),
+    };
+  }
+  return json({ moneda: ctx.tienda.moneda, productos });
+}
+
+function panelPedido(ctx) {
+  const { contacto, tienda, prefijo } = ctx;
+  const whatsapp = String(contacto.whatsapp || '').replace(/\D/g, '');
+  const botones = [
+    whatsapp
+      ? `<button class="boton boton--oscuro" type="submit" name="canal" value="whatsapp">${ICONOS.whatsapp}<span>Enviar pedido por WhatsApp</span></button>`
+      : '',
+    contacto.correo
+      ? `<button class="boton ${whatsapp ? 'boton--linea' : 'boton--oscuro'}" type="submit" name="canal" value="correo">${ICONOS.correo}<span>Enviar por correo</span></button>`
+      : '',
+  ].filter(Boolean);
+  if (!botones.length) botones.push('<button class="boton boton--oscuro" type="submit">Enviar pedido</button>');
+  const condiciones = [tienda.pagos && `Formas de pago: ${tienda.pagos}`, tienda.entregas].filter(Boolean).join(' ');
+  return `<dialog class="pedido" id="pedido" aria-labelledby="pedido-titulo">
+  <div class="pedido__interior">
+    <div class="pedido__cabecera">
+      <h2 class="pedido__titulo" id="pedido-titulo">Tu <em>pedido</em></h2>
+      <button class="pedido__cerrar" type="button" data-cerrar-pedido aria-label="Cerrar el pedido">${CERRAR}</button>
+    </div>
+    <div class="pedido__vacio">
+      <p>Tu pedido está vacío.</p>
+      <a class="enlace-flecha" href="${prefijo}tienda.html">Ir a la tienda ${FLECHA}</a>
+    </div>
+    <ul class="pedido__lineas"></ul>
+    <div class="pedido__resumen">
+      <p class="pedido__total"><span>Total</span> <strong data-total></strong></p>
+      <p class="pedido__aclaracion" data-aclaracion></p>
+    </div>
+    <form class="formulario pedido__formulario" data-whatsapp="${escapar(whatsapp)}" data-correo="${escapar(contacto.correo)}">
+      <div class="campo">
+        <label for="p-nombre">Nombre</label>
+        <input id="p-nombre" name="nombre" type="text" autocomplete="name" required>
+      </div>
+      <div class="campo">
+        <label for="p-telefono">Teléfono ${OPCIONAL}</label>
+        <input id="p-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel">
+      </div>
+      <div class="campo" data-solo-entrega hidden>
+        <label for="p-entrega">Entrega</label>
+        <select id="p-entrega" name="entrega">
+          <option>Recoger en el atelier</option>
+          <option>Envío a domicilio</option>
+        </select>
+      </div>
+      <div class="campo" data-solo-entrega hidden>
+        <label for="p-fecha">Fecha deseada ${OPCIONAL}</label>
+        <input id="p-fecha" name="fecha" type="date">
+      </div>
+      <div class="campo">
+        <label for="p-notas">Notas ${OPCIONAL}</label>
+        <textarea id="p-notas" name="notas" rows="3" placeholder="Sabores, dedicatoria, alergias…"></textarea>
+      </div>
+      <div class="formulario__acciones">
+        ${botones.join('\n        ')}
+      </div>
+      <p class="formulario__estado" role="status" aria-live="polite"></p>
+      <p class="pedido__condiciones">${escapar(
+        condiciones || 'Antes de cobrar te confirmamos disponibilidad, total y forma de pago.',
+      )}</p>
+    </form>
+    <button class="pedido__vaciar" type="button" data-vaciar-pedido>Vaciar pedido</button>
+  </div>
+</dialog>
+<div class="aviso-pedido" role="status" aria-live="polite" hidden>
+  <span data-aviso-texto></span>
+  <button type="button" data-abrir-pedido>Ver pedido</button>
+</div>
+<script type="application/json" id="catalogo">${datosCatalogo(ctx)}</script>`;
+}
+
 function otras(ctx, servicios, { titulo, fondo = 'papel' }) {
   return `<section class="seccion seccion--${fondo} otras" aria-labelledby="otras-titulo">
   <div class="contenedor">
@@ -271,6 +462,7 @@ function principios(ctx, fondo) {
 // ——— Bloques de las paginas de especialidad ———
 
 const FONDOS = {
+  catalogo: 'marfil',
   rejilla: 'marfil',
   lista: 'papel',
   pasos: 'arena',
@@ -281,6 +473,18 @@ const FONDOS = {
 };
 
 const BLOQUES = {
+  catalogo(b, { id, clases, ctx }) {
+    const productos = ctx.catalogo.filter((p) => p.categoria === b.categoria);
+    const tienda = `${ctx.prefijo}tienda.html?categoria=${encodeURIComponent(b.categoria)}`;
+    return `<section class="${clases}" id="${escapar(b.categoria)}" aria-labelledby="${id}">
+  <div class="contenedor">
+    ${encabezado({ antetitulo: b.antetitulo, titulo: b.titulo, id })}
+    ${listaProductos(ctx, productos, { vacio: b.vacio })}
+    ${productos.length ? `<a class="enlace-flecha" href="${escapar(tienda)}">Ver en la tienda ${FLECHA}</a>` : ''}
+  </div>
+</section>`;
+  },
+
   rejilla(b, { id, clases }) {
     const total = b.items.length;
     const columnas = total % 3 === 0 ? 3 : total % 4 === 0 ? 4 : 2;
@@ -379,7 +583,7 @@ const BLOQUES = {
   },
 };
 
-function bloques(lista) {
+function bloques(ctx, lista) {
   // La introduccion va sobre papel; dos secciones seguidas con el mismo fondo se separan con una linea.
   let anterior = 'papel';
   return lista
@@ -391,7 +595,7 @@ function bloques(lista) {
       if (bloque.tipo === 'nota') clases.push('seccion--breve');
       else if (fondo === anterior) clases.push('seccion--continua');
       if (bloque.tipo !== 'nota') anterior = fondo;
-      return dibujar(bloque, { id: `bloque-${i + 1}`, clases: clases.join(' ') });
+      return dibujar(bloque, { id: `bloque-${i + 1}`, clases: clases.join(' '), ctx });
     })
     .join('\n');
 }
@@ -401,17 +605,12 @@ function bloques(lista) {
 function cabecera(ctx, activo) {
   const { marca, servicios, prefijo } = ctx;
   const actual = (clave) => (clave === activo ? ' aria-current="page"' : '');
-  const enlaces = servicios
-    .map(
-      (s) =>
-        `<li><a class="menu__enlace" href="${prefijo}${s.slug}.html"${actual(s.slug)}><span class="menu__num" aria-hidden="true">${
-          s.numero
-        }</span>${escapar(s.menu)}</a></li>`,
-    )
-    .concat(
-      `<li><a class="menu__enlace" href="${prefijo}chef.html"${actual('chef')}><span class="menu__num" aria-hidden="true"></span>El chef</a></li>`,
-    )
-    .join('\n        ');
+  const enlace = (archivo, clave, numero, texto) =>
+    `<li><a class="menu__enlace" href="${prefijo}${archivo}"${actual(clave)}><span class="menu__num" aria-hidden="true">${numero}</span>${escapar(
+      texto,
+    )}</a></li>`;
+  const especialidades = servicios.map((s) => enlace(`${s.slug}.html`, s.slug, s.numero, s.nombre)).join('\n            ');
+  const enEspecialidad = servicios.some((s) => s.slug === activo);
   const rapidos = datosContacto(ctx).filter((dato) => dato.href && dato.clave !== 'telefono');
   return `<header class="cabecera${activo === 'inicio' ? ' cabecera--portada' : ''}" id="cabecera">
   <div class="contenedor cabecera__interior">
@@ -419,13 +618,18 @@ function cabecera(ctx, activo) {
       <span class="lockup__nombre">${escapar(marca.nombre)}</span>
       <span class="lockup__sub">${escapar(marca.submarca)}</span>
     </a>
-    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu">
-      <span class="menu-boton__icono" aria-hidden="true"></span>
-      <span class="visualmente-oculto">Abrir menú</span>
-    </button>
     <nav class="menu" id="menu" aria-label="Principal">
       <ul class="menu__lista">
-        ${enlaces}
+        <li class="menu__grupo">
+          <button class="menu__desplegar${
+            enEspecialidad ? ' menu__desplegar--actual' : ''
+          }" type="button" aria-expanded="false" aria-controls="submenu">Especialidades ${CHEVRON}</button>
+          <ul class="submenu" id="submenu">
+            ${especialidades}
+          </ul>
+        </li>
+        ${enlace('tienda.html', 'tienda', '', 'Tienda')}
+        ${enlace('chef.html', 'chef', '', 'El chef')}
       </ul>
       <a class="boton boton--contorno menu__cta" href="${prefijo}contacto.html"${actual('contacto')}>Contacto</a>
       ${
@@ -434,6 +638,13 @@ function cabecera(ctx, activo) {
           : ''
       }
     </nav>
+    <button class="carrito" type="button" data-abrir-pedido aria-haspopup="dialog" aria-label="Tu pedido">${
+      ICONOS.bolsa
+    }<span class="carrito__cuenta" data-cuenta hidden>0</span></button>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="menu-boton__icono" aria-hidden="true"></span>
+      <span class="visualmente-oculto">Abrir menú</span>
+    </button>
   </div>
 </header>`;
 }
@@ -457,6 +668,7 @@ function pie(ctx) {
       <h2 class="pie__titulo" id="pie-atelier">Atelier</h2>
       <ul>
         <li><a href="${prefijo}index.html">Inicio</a></li>
+        <li><a href="${prefijo}tienda.html">Tienda</a></li>
         <li><a href="${prefijo}chef.html">El chef</a></li>
         <li><a href="${prefijo}contacto.html">Contacto</a></li>
       </ul>
@@ -510,6 +722,7 @@ ${metas.join('\n')}
 <link rel="preload" href="${prefijo}assets/fuentes/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${prefijo}assets/estilos.css?v=${version.css}">
 <script>document.documentElement.classList.add('js')</script>
+<script src="${prefijo}assets/pedido.js?v=${version.pedido}" defer></script>
 <script src="${prefijo}assets/sitio.js?v=${version.js}" defer></script>
 ${jsonLd ? `<script type="application/ld+json">${json(jsonLd)}</script>\n` : ''}</head>
 <body>
@@ -519,6 +732,7 @@ ${cabecera(ctx, activo)}
 ${cuerpo}
 </main>
 ${pie(ctx)}
+${panelPedido(ctx)}
 ${
   flotante
     ? `<a class="flotante" href="${escapar(flotante)}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">${ICONOS.whatsapp}</a>\n`
@@ -588,8 +802,9 @@ function jsonLdServicio(ctx, s) {
 // ——— Paginas ———
 
 export function paginaInicio(ctx) {
-  const { marca, portada, servicios, chef, prefijo } = ctx;
+  const { marca, portada, servicios, chef, catalogo, prefijo } = ctx;
   const porSlug = new Map(servicios.map((s) => [s.slug, s]));
+  const cursos = catalogo.filter((p) => p.categoria === 'cursos').slice(0, 3);
   const publico = (p) => `<div class="publico publico--${p.tono}">
     ${flor('publico__flor')}
     <div class="publico__interior" data-revelar>
@@ -604,9 +819,9 @@ export function paginaInicio(ctx) {
           .join('\n        ')}
       </ul>
       <div class="botones">
-        <a class="boton ${p.tono === 'oscuro' ? 'boton--claro' : 'boton--oscuro'}" href="${prefijo}contacto.html?servicio=${encodeURIComponent(
-          p.servicio,
-        )}">${escapar(p.boton)}</a>
+        <a class="boton ${p.tono === 'oscuro' ? 'boton--claro' : 'boton--oscuro'}" href="${prefijo}${escapar(
+          p.boton.archivo,
+        )}">${escapar(p.boton.texto)}</a>
       </div>
     </div>
   </div>`;
@@ -623,8 +838,8 @@ export function paginaInicio(ctx) {
     </div>
     <p class="portada__lema">${enriquecer(portada.lema)}</p>
     <div class="botones botones--centrados">
-      <a class="boton boton--claro" href="#especialidades">Conocer las especialidades</a>
-      <a class="boton boton--contorno" href="${prefijo}contacto.html">Contacto</a>
+      <a class="boton boton--claro" href="${prefijo}cursos.html">Ver los cursos</a>
+      <a class="boton boton--contorno" href="${prefijo}tienda.html">Visitar la tienda</a>
     </div>
   </div>
   <a class="portada__bajar" href="#especialidades" aria-hidden="true" tabindex="-1"><span></span></a>
@@ -635,13 +850,27 @@ export function paginaInicio(ctx) {
     ${encabezado({ ...portada.matriz, id: 'especialidades-titulo', centrado: true })}
     <div class="arbol">
       <div class="arbol__raiz" aria-hidden="true">${flor()}</div>
-      <ol class="arbol__ramas">
+      <ol class="arbol__ramas${servicios.length % 2 ? ' arbol__ramas--impar' : ''}" style="--ramas:${servicios.length}">
       ${tarjetasServicios(ctx, servicios)}
       </ol>
     </div>
   </div>
 </section>
-
+${
+  cursos.length
+    ? `
+<section class="seccion seccion--papel" aria-labelledby="cursos-titulo">
+  <div class="contenedor">
+    <div class="encabezado-fila">
+      ${encabezado({ ...portada.cursos, id: 'cursos-titulo' })}
+      <a class="enlace-flecha" href="${prefijo}cursos.html">Todos los cursos ${FLECHA}</a>
+    </div>
+    ${listaProductos(ctx, cursos)}
+  </div>
+</section>
+`
+    : ''
+}
 <section class="publicos" aria-label="Cómo podemos ayudarte">
   ${portada.publicos.map(publico).join('\n  ')}
 </section>
@@ -704,7 +933,7 @@ export function paginaServicio(ctx, s) {
   </div>
 </section>
 
-${bloques(s.bloques)}
+${bloques(ctx, s.bloques)}
 
 ${otras(
   ctx,
@@ -722,6 +951,94 @@ ${cierre(ctx, { ...s.cierre, servicio: s.slug })}`;
     activo: s.slug,
     mensaje: s.cierre.mensaje,
     jsonLd: jsonLdServicio(ctx, s),
+  });
+}
+
+function jsonLdTienda(ctx) {
+  const conPrecio = ctx.catalogo.filter((p) => p.precio != null && !p.ejemplo);
+  if (!conPrecio.length) return null;
+  const vendedor = { '@type': 'Organization', name: nombreSitio(ctx) };
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: plano(ctx.tienda.titulo),
+    itemListElement: conPrecio.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': p.categoria === 'cursos' ? 'Course' : 'Product',
+        name: p.nombre,
+        description: plano(p.resumen),
+        ...(p.categoria === 'cursos' ? { provider: vendedor } : { brand: vendedor }),
+        offers: {
+          '@type': 'Offer',
+          price: p.precio,
+          priceCurrency: ctx.tienda.moneda,
+          availability: `https://schema.org/${p.agotado ? 'SoldOut' : 'InStock'}`,
+          url: ctx.sitio.dominio ? `${ctx.sitio.dominio}/tienda.html` : undefined,
+        },
+      },
+    })),
+  };
+}
+
+export function paginaTienda(ctx) {
+  const { tienda, catalogo, marca } = ctx;
+  const categorias = tienda.categorias.filter((c) => catalogo.some((p) => p.categoria === c.id));
+  const filtros =
+    categorias.length > 1
+      ? `<div class="filtros" role="group" aria-label="Filtrar productos">
+      <button class="filtro" type="button" data-filtro="" aria-pressed="true">Todo</button>
+      ${categorias
+        .map(
+          (c) =>
+            `<button class="filtro" type="button" data-filtro="${escapar(c.id)}" aria-pressed="false">${escapar(c.nombre)}</button>`,
+        )
+        .join('\n      ')}
+    </div>`
+      : '';
+  const condiciones = [
+    tienda.pagos && `<strong>Formas de pago:</strong> ${escapar(tienda.pagos)}`,
+    tienda.entregas && `<strong>Entregas:</strong> ${escapar(tienda.entregas)}`,
+  ].filter(Boolean);
+
+  const cuerpo = `<section class="heroe heroe--breve" aria-labelledby="titulo-pagina">
+  <div class="contenedor">
+    <p class="antetitulo">Tienda</p>
+    <h1 class="heroe__titulo" id="titulo-pagina">${enriquecer(tienda.titulo)}</h1>
+    <p class="heroe__lema">${enriquecer(tienda.lema)}</p>
+  </div>
+</section>
+
+<section class="seccion seccion--papel" aria-label="Productos">
+  <div class="contenedor">
+    ${filtros}
+    ${listaProductos(ctx, catalogo, {
+      vacio: 'Muy pronto tendremos cursos y piezas disponibles. Escríbenos y te contamos las novedades.',
+    })}
+    ${condiciones.length ? `<p class="tienda__condiciones">${flor()}<span>${condiciones.join(' · ')}</span></p>` : ''}
+  </div>
+</section>
+
+${BLOQUES.pasos(
+  { antetitulo: 'Cómo comprar', titulo: 'Así funciona *tu pedido*', items: tienda.pasos },
+  { id: 'como-comprar', clases: 'seccion seccion--arena' },
+)}
+
+${cierre(ctx, {
+  titulo: '¿Buscas algo *especial*?',
+  texto: 'Si no encuentras lo que buscas, escríbenos: hacemos piezas por encargo y clases a la medida.',
+  mensaje: 'Hola, tengo una pregunta sobre la tienda del atelier.',
+})}`;
+
+  return documento(ctx, {
+    archivo: 'tienda.html',
+    titulo: `${plano(tienda.tituloSeo)} | ${marca.nombre} · ${marca.submarca}`,
+    descripcion: tienda.descripcionSeo,
+    cuerpo,
+    activo: 'tienda',
+    mensaje: 'Hola, tengo una pregunta sobre la tienda del atelier.',
+    jsonLd: jsonLdTienda(ctx),
   });
 }
 
@@ -917,8 +1234,8 @@ export function paginaPrivacidad(ctx) {
       correo ? `a <a href="mailto:${escapar(correo)}">${escapar(correo)}</a>` : 'por los medios de contacto de este sitio'
     }. Te responderemos dentro de los plazos que establece la ley.</p>
 
-    <h2>Cookies</h2>
-    <p>Este sitio no utiliza cookies de rastreo ni herramientas de publicidad.</p>
+    <h2>Cookies y datos en tu navegador</h2>
+    <p>Este sitio no utiliza cookies de rastreo ni herramientas de publicidad. La tienda guarda tu pedido en tu propio navegador (almacenamiento local) solo para que no se pierda mientras navegas; no se envía a ningún servidor hasta que tú decides mandarlo por WhatsApp o correo.</p>
 
     <h2>Cambios a este aviso</h2>
     <p>Cualquier modificación a este aviso de privacidad se publicará en esta misma página.</p>

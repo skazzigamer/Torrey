@@ -19,10 +19,11 @@
 <link rel="preload" href="assets/fuentes/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fuentes/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fuentes/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/estilos.css?v=fd9fb53588">
+<link rel="stylesheet" href="assets/estilos.css?v=4b93fa2610">
 <script>document.documentElement.classList.add('js')</script>
-<script src="assets/sitio.js?v=43f143aa3c" defer></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Asesorías profesionales","serviceType":"Hoteles y restaurantes","description":"Asesoría gastronómica profesional para hoteles y restaurantes: concepto y apertura, ingeniería de menú, costeo, operación de cocina y capacitación de equipos.","areaServed":"Guadalajara, Jalisco","provider":{"@type":"Organization","name":"Cristóbal Díaz · Atelier de Cocina","alternateName":"Cristóbal Díaz Atelier de Cocina","description":"Asesorías profesionales para hoteles y restaurantes, Mystery Guest, alta pastelería y pastelería de lujo.","founder":{"@type":"Person","name":"Cristóbal Díaz","jobTitle":"Chef"},"areaServed":"Guadalajara, Jalisco"}}</script>
+<script src="assets/pedido.js?v=f5adb3eba2" defer></script>
+<script src="assets/sitio.js?v=fd5c0b81c6" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Asesorías profesionales","serviceType":"Hoteles y restaurantes","description":"Asesoría gastronómica profesional para hoteles y restaurantes: concepto y apertura, ingeniería de menú, costeo, operación de cocina y capacitación de equipos.","areaServed":"Guadalajara, Jalisco","provider":{"@type":"Organization","name":"Cristóbal Díaz · Atelier de Cocina","alternateName":"Cristóbal Díaz Atelier de Cocina","description":"Cursos de cocina y pastelería, asesorías para hoteles y restaurantes, Mystery Guest, alta pastelería y pastelería de lujo.","founder":{"@type":"Person","name":"Cristóbal Díaz","jobTitle":"Chef"},"areaServed":"Guadalajara, Jalisco"}}</script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -32,28 +33,36 @@
       <span class="lockup__nombre">Cristóbal Díaz</span>
       <span class="lockup__sub">Atelier de Cocina</span>
     </a>
-    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu">
-      <span class="menu-boton__icono" aria-hidden="true"></span>
-      <span class="visualmente-oculto">Abrir menú</span>
-    </button>
     <nav class="menu" id="menu" aria-label="Principal">
       <ul class="menu__lista">
-        <li><a class="menu__enlace" href="asesorias.html" aria-current="page"><span class="menu__num" aria-hidden="true">01</span>Asesorías</a></li>
-        <li><a class="menu__enlace" href="mystery-guest.html"><span class="menu__num" aria-hidden="true">02</span>Mystery Guest</a></li>
-        <li><a class="menu__enlace" href="alta-pasteleria.html"><span class="menu__num" aria-hidden="true">03</span>Alta Pastelería</a></li>
-        <li><a class="menu__enlace" href="pasteleria-de-lujo.html"><span class="menu__num" aria-hidden="true">04</span>Pastelería de Lujo</a></li>
+        <li class="menu__grupo">
+          <button class="menu__desplegar menu__desplegar--actual" type="button" aria-expanded="false" aria-controls="submenu">Especialidades <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
+          <ul class="submenu" id="submenu">
+            <li><a class="menu__enlace" href="cursos.html"><span class="menu__num" aria-hidden="true">01</span>Cursos y talleres</a></li>
+            <li><a class="menu__enlace" href="asesorias.html" aria-current="page"><span class="menu__num" aria-hidden="true">02</span>Asesorías profesionales</a></li>
+            <li><a class="menu__enlace" href="mystery-guest.html"><span class="menu__num" aria-hidden="true">03</span>Mystery Guest</a></li>
+            <li><a class="menu__enlace" href="alta-pasteleria.html"><span class="menu__num" aria-hidden="true">04</span>Alta Pastelería</a></li>
+            <li><a class="menu__enlace" href="pasteleria-de-lujo.html"><span class="menu__num" aria-hidden="true">05</span>Pastelería de Lujo</a></li>
+          </ul>
+        </li>
+        <li><a class="menu__enlace" href="tienda.html"><span class="menu__num" aria-hidden="true"></span>Tienda</a></li>
         <li><a class="menu__enlace" href="chef.html"><span class="menu__num" aria-hidden="true"></span>El chef</a></li>
       </ul>
       <a class="boton boton--contorno menu__cta" href="contacto.html">Contacto</a>
       
     </nav>
+    <button class="carrito" type="button" data-abrir-pedido aria-haspopup="dialog" aria-label="Tu pedido"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.5 8h13l-1.1 12.5H6.6Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="carrito__cuenta" data-cuenta hidden>0</span></button>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="menu-boton__icono" aria-hidden="true"></span>
+      <span class="visualmente-oculto">Abrir menú</span>
+    </button>
   </div>
 </header>
 <main id="contenido">
 <section class="heroe" aria-labelledby="titulo-pagina">
   <div class="contenedor heroe__rejilla">
     <div class="heroe__texto">
-      <p class="antetitulo">01 · Hoteles y restaurantes</p>
+      <p class="antetitulo">02 · Hoteles y restaurantes</p>
       <h1 class="heroe__titulo" id="titulo-pagina">Asesorías profesionales</h1>
       <p class="heroe__lema">Acompañamiento experto para que tu cocina, tu servicio y tus números trabajen a favor de <em>una misma experiencia</em>.</p>
       <div class="botones">
@@ -232,28 +241,37 @@
 <section class="seccion seccion--papel otras" aria-labelledby="otras-titulo">
   <div class="contenedor">
     <h2 class="antetitulo otras__titulo" id="otras-titulo">Otras especialidades del atelier</h2>
-    <ul class="otras__lista otras__lista--3">
+    <ul class="otras__lista otras__lista--4">
       <li class="rama" data-revelar style="--retraso:0">
+        <a class="tarjeta tarjeta--compacta" href="cursos.html">
+          <span class="tarjeta__num">01</span>
+          <span class="tarjeta__etiqueta">Taller de cocina</span>
+          <h3 class="tarjeta__nombre">Cursos y talleres</h3>
+          
+          <span class="tarjeta__mas">Conocer más <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
+        </a>
+      </li>
+      <li class="rama" data-revelar style="--retraso:1">
         <a class="tarjeta tarjeta--compacta" href="mystery-guest.html">
-          <span class="tarjeta__num">02</span>
+          <span class="tarjeta__num">03</span>
           <span class="tarjeta__etiqueta">Evaluación anónima</span>
           <h3 class="tarjeta__nombre">Mystery Guest</h3>
           
           <span class="tarjeta__mas">Conocer más <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
         </a>
       </li>
-      <li class="rama" data-revelar style="--retraso:1">
+      <li class="rama" data-revelar style="--retraso:2">
         <a class="tarjeta tarjeta--compacta" href="alta-pasteleria.html">
-          <span class="tarjeta__num">03</span>
-          <span class="tarjeta__etiqueta">Técnica y formación</span>
+          <span class="tarjeta__num">04</span>
+          <span class="tarjeta__etiqueta">Para restaurantes y hoteles</span>
           <h3 class="tarjeta__nombre">Alta Pastelería</h3>
           
           <span class="tarjeta__mas">Conocer más <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></span>
         </a>
       </li>
-      <li class="rama" data-revelar style="--retraso:2">
+      <li class="rama" data-revelar style="--retraso:3">
         <a class="tarjeta tarjeta--compacta" href="pasteleria-de-lujo.html">
-          <span class="tarjeta__num">04</span>
+          <span class="tarjeta__num">05</span>
           <span class="tarjeta__etiqueta">Piezas por encargo</span>
           <h3 class="tarjeta__nombre">Pastelería de Lujo</h3>
           
@@ -284,11 +302,12 @@
       <span class="lockup__sub">Atelier de Cocina</span>
       <svg class="flor lockup__flor" viewBox="-17 -17 34 34" aria-hidden="true" focusable="false"><path d="M-2.6 -4.5C-3.6 -6.24 -5.6 -8.4 -5.6 -10.4C-5.6 -13.49 -3.09 -16 0 -16C3.09 -16 5.6 -13.49 5.6 -10.4C5.6 -8.4 3.6 -6.24 2.6 -4.5C3.6 -6.24 4.47 -9.05 6.21 -10.05C8.89 -11.6 12.31 -10.68 13.86 -8C15.4 -5.32 14.49 -1.9 11.81 -0.35C10.07 0.65 7.2 0 5.2 0C7.2 0 10.07 -0.65 11.81 0.35C14.49 1.9 15.4 5.32 13.86 8C12.31 10.68 8.89 11.6 6.21 10.05C4.47 9.05 3.6 6.24 2.6 4.5C3.6 6.24 5.6 8.4 5.6 10.4C5.6 13.49 3.09 16 0 16C-3.09 16 -5.6 13.49 -5.6 10.4C-5.6 8.4 -3.6 6.24 -2.6 4.5C-3.6 6.24 -4.47 9.05 -6.21 10.05C-8.89 11.6 -12.31 10.68 -13.86 8C-15.4 5.32 -14.49 1.9 -11.81 0.35C-10.07 -0.65 -7.2 0 -5.2 0C-7.2 0 -10.07 0.65 -11.81 -0.35C-14.49 -1.9 -15.4 -5.32 -13.86 -8C-12.31 -10.68 -8.89 -11.6 -6.21 -10.05C-4.47 -9.05 -3.6 -6.24 -2.6 -4.5Z"/></svg>
     </a>
-      <p class="pie__texto">Asesorías profesionales para hoteles y restaurantes, Mystery Guest, alta pastelería y pastelería de lujo.</p>
+      <p class="pie__texto">Cursos de cocina y pastelería, asesorías para hoteles y restaurantes, Mystery Guest, alta pastelería y pastelería de lujo.</p>
     </div>
     <nav class="pie__columna" aria-labelledby="pie-especialidades">
       <h2 class="pie__titulo" id="pie-especialidades">Especialidades</h2>
       <ul>
+        <li><a href="cursos.html">Cursos y talleres</a></li>
         <li><a href="asesorias.html">Asesorías profesionales</a></li>
         <li><a href="mystery-guest.html">Mystery Guest</a></li>
         <li><a href="alta-pasteleria.html">Alta Pastelería</a></li>
@@ -299,6 +318,7 @@
       <h2 class="pie__titulo" id="pie-atelier">Atelier</h2>
       <ul>
         <li><a href="index.html">Inicio</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
         <li><a href="chef.html">El chef</a></li>
         <li><a href="contacto.html">Contacto</a></li>
       </ul>
@@ -315,5 +335,58 @@
     <a href="aviso-de-privacidad.html">Aviso de privacidad</a>
   </div>
 </footer>
+<dialog class="pedido" id="pedido" aria-labelledby="pedido-titulo">
+  <div class="pedido__interior">
+    <div class="pedido__cabecera">
+      <h2 class="pedido__titulo" id="pedido-titulo">Tu <em>pedido</em></h2>
+      <button class="pedido__cerrar" type="button" data-cerrar-pedido aria-label="Cerrar el pedido"><svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="pedido__vacio">
+      <p>Tu pedido está vacío.</p>
+      <a class="enlace-flecha" href="tienda.html">Ir a la tienda <svg class="flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-6-6 6 6-6 6"/></svg></a>
+    </div>
+    <ul class="pedido__lineas"></ul>
+    <div class="pedido__resumen">
+      <p class="pedido__total"><span>Total</span> <strong data-total></strong></p>
+      <p class="pedido__aclaracion" data-aclaracion></p>
+    </div>
+    <form class="formulario pedido__formulario" data-whatsapp="" data-correo="">
+      <div class="campo">
+        <label for="p-nombre">Nombre</label>
+        <input id="p-nombre" name="nombre" type="text" autocomplete="name" required>
+      </div>
+      <div class="campo">
+        <label for="p-telefono">Teléfono <span class="campo__opcional">(opcional)</span></label>
+        <input id="p-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel">
+      </div>
+      <div class="campo" data-solo-entrega hidden>
+        <label for="p-entrega">Entrega</label>
+        <select id="p-entrega" name="entrega">
+          <option>Recoger en el atelier</option>
+          <option>Envío a domicilio</option>
+        </select>
+      </div>
+      <div class="campo" data-solo-entrega hidden>
+        <label for="p-fecha">Fecha deseada <span class="campo__opcional">(opcional)</span></label>
+        <input id="p-fecha" name="fecha" type="date">
+      </div>
+      <div class="campo">
+        <label for="p-notas">Notas <span class="campo__opcional">(opcional)</span></label>
+        <textarea id="p-notas" name="notas" rows="3" placeholder="Sabores, dedicatoria, alergias…"></textarea>
+      </div>
+      <div class="formulario__acciones">
+        <button class="boton boton--oscuro" type="submit">Enviar pedido</button>
+      </div>
+      <p class="formulario__estado" role="status" aria-live="polite"></p>
+      <p class="pedido__condiciones">Antes de cobrar te confirmamos disponibilidad, total y forma de pago.</p>
+    </form>
+    <button class="pedido__vaciar" type="button" data-vaciar-pedido>Vaciar pedido</button>
+  </div>
+</dialog>
+<div class="aviso-pedido" role="status" aria-live="polite" hidden>
+  <span data-aviso-texto></span>
+  <button type="button" data-abrir-pedido>Ver pedido</button>
+</div>
+<script type="application/json" id="catalogo">{"moneda":"MXN","productos":{"fundamentos-pasteleria":{"nombre":"Fundamentos de pastelería francesa","precio":null,"fecha":"","unidad":"por persona","maximo":20,"entrega":false},"chocolate-bomboneria":{"nombre":"Chocolate y bombonería","precio":null,"fecha":"","unidad":"por persona","maximo":20,"entrega":false},"pan-viennoiserie":{"nombre":"Pan y viennoiserie","precio":null,"fecha":"","unidad":"por persona","maximo":20,"entrega":false},"postres-emplatados":{"nombre":"Postres emplatados","precio":null,"fecha":"","unidad":"por persona","maximo":20,"entrega":false},"pastel-de-autor":{"nombre":"Pastel de autor","precio":null,"fecha":"","unidad":"","maximo":20,"entrega":true},"caja-bombones":{"nombre":"Caja de bombones","precio":null,"fecha":"","unidad":"","maximo":20,"entrega":true},"tarta-temporada":{"nombre":"Tarta fina de temporada","precio":null,"fecha":"","unidad":"","maximo":20,"entrega":true},"petit-fours":{"nombre":"Caja de petit fours","precio":null,"fecha":"","unidad":"","maximo":20,"entrega":true},"tarjeta-regalo":{"nombre":"Tarjeta de regalo","precio":null,"fecha":"","unidad":"","maximo":20,"entrega":false}}}</script>
 </body>
 </html>

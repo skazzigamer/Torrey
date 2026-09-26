@@ -4,7 +4,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as contenido from './contenido.js';
 import {
-  pagina404, paginaChef, paginaContacto, paginaInicio, paginaPrivacidad, paginaServicio, robots, sitemap,
+  pagina404, paginaChef, paginaContacto, paginaInicio, paginaPrivacidad, paginaServicio, paginaTienda, robots,
+  sitemap,
 } from './plantillas.js';
 
 const RAIZ = import.meta.dirname;
@@ -31,32 +32,74 @@ async function imagenValida(nombre, donde, avisos) {
   return '';
 }
 
+// Revisa el catalogo. Los productos marcados como ejemplo solo aparecen en la vista previa.
+async function prepararCatalogo(datos, publicar, avisos) {
+  const categorias = new Set(datos.TIENDA.categorias.map((c) => c.id));
+  const vistos = new Set();
+  const catalogo = [];
+  let ejemplos = 0;
+  for (const producto of datos.CATALOGO) {
+    const { id } = producto;
+    if (!/^[a-z0-9-]+$/.test(id || '')) throw new Error(`CATALOGO: id no válido "${id}" (minúsculas, números y guiones)`);
+    if (vistos.has(id)) throw new Error(`CATALOGO: el id "${id}" está repetido`);
+    vistos.add(id);
+    if (!categorias.has(producto.categoria)) {
+      throw new Error(`CATALOGO: la categoría "${producto.categoria}" de "${id}" no existe en TIENDA.categorias`);
+    }
+    if (producto.precio != null && !(Number.isFinite(producto.precio) && producto.precio >= 0)) {
+      throw new Error(`CATALOGO: el precio de "${id}" debe ser un número o null`);
+    }
+    if (producto.ejemplo) {
+      ejemplos += 1;
+      if (publicar) continue;
+    }
+    let pago = producto.pago || '';
+    if (pago && !/^https:\/\/\S+$/.test(pago)) {
+      avisos.push(`CATALOGO: el link de pago de "${id}" debe empezar con https://; se omitió.`);
+      pago = '';
+    }
+    const imagen = await imagenValida(producto.imagen, `CATALOGO ${id}`, avisos);
+    catalogo.push({ detalles: [], ...producto, pago, imagen });
+  }
+  if (ejemplos) {
+    avisos.push(
+      publicar
+        ? `CATALOGO: se omitieron ${ejemplos} productos de ejemplo.`
+        : `CATALOGO: ${ejemplos} productos de ejemplo (solo se ven en la vista previa); reemplázalos con los del cliente.`,
+    );
+  }
+  return catalogo;
+}
+
 async function prepararContexto(datos, avisos) {
   const servicios = [];
-  for (const s of datos.SERVICIOS) {
+  for (const [i, s] of datos.SERVICIOS.entries()) {
     const imagen = await imagenValida(s.intro.imagen, `${s.slug}.intro.imagen`, avisos);
-    servicios.push({ ...s, intro: { ...s.intro, imagen } });
+    servicios.push({ ...s, numero: String(i + 1).padStart(2, '0'), intro: { ...s.intro, imagen } });
   }
+  const dominio = String(datos.SITIO.dominio || '').replace(/\/+$/, '');
+  const catalogo = await prepararCatalogo(datos, Boolean(dominio), avisos);
   const chef = {
     ...datos.CHEF,
     imagen: await imagenValida(datos.CHEF.imagen, 'CHEF.imagen', avisos),
     firma: await imagenValida(datos.CHEF.firma, 'CHEF.firma', avisos),
   };
-  const [css, js] = await Promise.all([
-    fs.readFile(path.join(RECURSOS, 'estilos.css'), 'utf8'),
-    fs.readFile(path.join(RECURSOS, 'sitio.js'), 'utf8'),
-  ]);
+  const [css, js, pedido] = await Promise.all(
+    ['estilos.css', 'sitio.js', 'pedido.js'].map((archivo) => fs.readFile(path.join(RECURSOS, archivo), 'utf8')),
+  );
   return {
     marca: datos.MARCA,
     contacto: datos.CONTACTO,
-    sitio: { ...datos.SITIO, dominio: String(datos.SITIO.dominio || '').replace(/\/+$/, '') },
+    sitio: { ...datos.SITIO, dominio },
     portada: datos.PORTADA,
     principios: datos.PRINCIPIOS,
     servicios,
     chef,
     contactoPagina: datos.CONTACTO_PAGINA,
     legal: datos.LEGAL,
-    version: { css: huella(css), js: huella(js) },
+    tienda: datos.TIENDA,
+    catalogo,
+    version: { css: huella(css), js: huella(js), pedido: huella(pedido) },
     anio: new Date().getFullYear(),
     prefijo: '',
   };
@@ -75,6 +118,9 @@ function pendientes(ctx) {
     ...(ctx.chef.imagen ? [] : ['chef']),
   ];
   if (sinFoto.length) lista.push(`Fotos: ${sinFoto.join(', ')}.`);
+  const sinPrecio = ctx.catalogo.filter((p) => !p.ejemplo && p.precio == null).map((p) => p.id);
+  if (sinPrecio.length) lista.push(`CATALOGO sin precio (se mostrará a cotizar): ${sinPrecio.join(', ')}.`);
+  if (!ctx.tienda.pagos) lista.push('TIENDA.pagos: formas de pago que acepta el cliente.');
   return lista;
 }
 
@@ -89,6 +135,7 @@ export async function construir({ destino = DESTINO, datos = contenido } = {}) {
     ['index.html', paginaInicio(ctx)],
     ...ctx.servicios.map((s) => [`${s.slug}.html`, paginaServicio(ctx, s)]),
     ['chef.html', paginaChef(ctx)],
+    ['tienda.html', paginaTienda(ctx)],
     ['contacto.html', paginaContacto(ctx)],
     ['aviso-de-privacidad.html', paginaPrivacidad(ctx)],
     ['404.html', pagina404(ctx)],
