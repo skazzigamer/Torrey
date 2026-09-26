@@ -729,7 +729,7 @@ ${metas.join('\n')}
 <link rel="icon" href="${prefijo}assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${prefijo}assets/img/apple-touch-icon.png">
 <link rel="preload" href="${prefijo}assets/fuentes/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="${prefijo}assets/fuentes/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${prefijo}assets/fuentes/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${prefijo}assets/fuentes/cormorant-garamond.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${prefijo}assets/estilos.css?v=${version.css}">
 <script>document.documentElement.classList.add('js')</script>

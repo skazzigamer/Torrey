@@ -67,7 +67,7 @@ test('genera todas las páginas y los recursos', () => {
     'assets/estilos.css',
     'assets/sitio.js',
     'assets/pedido.js',
-    'assets/fuentes/poppins-800.woff2',
+    'assets/fuentes/poppins-600.woff2',
     'assets/img/og.jpg',
     'assets/img/favicon.svg',
   ]) {

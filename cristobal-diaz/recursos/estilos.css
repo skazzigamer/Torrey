@@ -23,13 +23,6 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Poppins';
-  src: url('fuentes/poppins-800.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
   font-family: 'Cormorant Garamond';
   src: url('fuentes/cormorant-garamond.woff2') format('woff2');
   font-weight: 300 700;
@@ -198,20 +191,22 @@ textarea {
   text-align: center;
   text-decoration: none;
 }
-/* Proporciones medidas sobre el logotipo oficial (JPG del cliente). El nombre va un poco a la
-   izquierda del eje del lema y la flor, igual que en el original. */
+/* Proporciones medidas sobre los logotipos oficiales (JPG del cliente): el nombre en Poppins SemiBold
+   con espaciado cerrado y "Atelier de Cocina" en Regular muy abierto. En el logotipo matriz el nombre
+   va un poco a la izquierda del eje del lema y la flor, igual que en el original. */
 .lockup__nombre {
   margin-left: -0.2em;
-  font: 800 1em/1 var(--sans);
-  letter-spacing: -0.094em;
+  font: 600 1em/1 var(--sans);
+  letter-spacing: -0.075em;
+  word-spacing: -0.043em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 .lockup__sub {
-  margin-top: 0.21em;
-  padding-left: 0.4em;
-  font: 500 0.28em/1 var(--sans);
-  letter-spacing: 0.4em;
+  margin-top: 0.234em;
+  padding-left: 0.47em;
+  font: 400 0.268em/1 var(--sans);
+  letter-spacing: 0.47em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -221,33 +216,36 @@ textarea {
   margin-top: 0.11em;
   stroke-width: 1.5;
 }
-/* Sub-marca: nombre, "Atelier de Cocina" y la línea de la especialidad entre rayas. */
+/* Sub-marca: nombre, "Atelier de Cocina" y la línea de la especialidad entre rayas, todo centrado.
+   El margen negativo del nombre compensa el espaciado negativo que queda después de la última letra. */
+.lockup--linea .lockup__nombre {
+  margin-left: -0.075em;
+}
 .lockup--linea .lockup__sub {
   margin-top: 0.26em;
-  padding-left: 0.42em;
+  padding-left: 0.394em;
   font-size: 0.318em;
-  font-weight: 400;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.394em;
 }
 .lockup__linea {
   display: flex;
   align-items: center;
-  gap: 0.8em;
-  margin-top: 1.72em;
-  font: 600 0.226em/1 var(--sans);
-  letter-spacing: 0.27em;
+  gap: 0.83em;
+  margin-top: 1.62em;
+  font: 500 0.242em/1 var(--sans);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 .lockup__linea span {
-  margin-right: -0.27em;
+  margin-right: -0.2em;
 }
 .lockup__linea::before,
 .lockup__linea::after {
   content: '';
   flex: none;
-  width: 1.6em;
-  height: 0.085em;
+  width: 1.58em;
+  height: 0.11em;
   background: currentColor;
 }
 
@@ -369,14 +367,12 @@ textarea {
     opacity 0.4s var(--curva),
     visibility 0.4s;
 }
-/* A 20 px el espaciado del original junta "CRISTÓBAL" con "DÍAZ": se abre un poco (ajuste óptico). */
-.marca .lockup__nombre {
-  letter-spacing: -0.07em;
-}
+/* A 20 px "Atelier de Cocina" mide 7 px: un poco más grande y en Medium para que se lea (ajuste óptico). */
 .marca .lockup__sub {
   margin-top: 0.62em;
   padding-left: 0.42em;
   font-size: 0.34em;
+  font-weight: 500;
   letter-spacing: 0.42em;
 }
 .js .cabecera--portada:not(.cabecera--con-marca) .marca {
@@ -1728,6 +1724,10 @@ textarea {
 .contacto__lockup {
   align-items: flex-start;
   font-size: 1.75rem;
+}
+/* Alineado a la izquierda: el borde de la C coincide con el del texto de abajo. */
+.contacto__lockup .lockup__nombre {
+  margin-left: -0.04em;
 }
 .contacto__lockup .lockup__sub {
   padding-left: 0;

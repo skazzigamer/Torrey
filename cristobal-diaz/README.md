@@ -129,9 +129,13 @@ logotipo matriz y el de la sub-marca "Cheesecake, galletas & más". En el sitio
 el logotipo se dibuja con texto y SVG para que se vea nítido en cualquier
 tamaño, con las medidas tomadas de esos archivos:
 
-- Nombre en Poppins ExtraBold con espaciado de -0.094em (en la cabecera, donde
-  mide 20 px, se abre a -0.07em para que no se junten las palabras).
-- "Atelier de Cocina" a 0.28 del tamaño del nombre y la flor de seis pétalos
+- Nombre en Poppins SemiBold (600) con espaciado de -0.075em y el espacio
+  entre palabras a -0.043em; "Atelier de Cocina" en Poppins Regular (400) y la
+  línea de cada especialidad en Medium (500), las dos muy espaciadas. Los pesos
+  salen del grosor de los trazos medido en los dos archivos. En la cabecera,
+  donde el nombre mide 20 px, "Atelier de Cocina" también va en Medium para
+  que se lea.
+- "Atelier de Cocina" a 0.268 del tamaño del nombre y la flor de seis pétalos
   redibujada sobre la original (constante `FLOR` en `plantillas.js`).
 - Cada especialidad usa el patrón de sub-marca del cliente: nombre, "Atelier
   de Cocina" y la línea de la especialidad entre rayas.
