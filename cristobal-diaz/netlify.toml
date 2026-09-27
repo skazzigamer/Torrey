@@ -1,0 +1,10 @@
+# Netlify: en la configuración del sitio, "Base directory" = cristobal-diaz (y la rama
+# donde esté el sitio). Con eso Netlify lee este archivo en lugar de la raíz del repositorio,
+# que es otro proyecto.
+[build]
+  command = "npm run build"
+  publish = "publico"
+
+# build.js necesita Node 20.11 o posterior.
+[build.environment]
+  NODE_VERSION = "22"

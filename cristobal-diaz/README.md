@@ -151,8 +151,14 @@ Nota para el cliente: en su logotipo dice "GALLETAS & MAS"; lo correcto es
 `publico/` es el sitio listo para subir:
 
 - **Netlify Drop**: arrastrar la carpeta `publico/` a app.netlify.com/drop.
-- **Netlify, Vercel o Cloudflare Pages** conectados al repositorio: carpeta
-  base `cristobal-diaz`, comando `npm run build`, carpeta de salida `publico`.
+- **Netlify conectado al repositorio**: en la configuración del sitio, la rama
+  donde está el sitio y **Base directory** `cristobal-diaz`. El comando, la
+  carpeta de salida y la versión de Node los toma de `netlify.toml`. Sin la
+  carpeta base, Netlify compila el proyecto de la raíz del repositorio, que es
+  otro.
+- **Vercel o Cloudflare Pages** conectados al repositorio: carpeta base
+  `cristobal-diaz`, comando `npm run build`, carpeta de salida `publico` y
+  Node 20.11 o posterior.
 - **Hosting tradicional (cPanel, FTP)**: subir el contenido de `publico/` a
   `public_html/`. Para la página de error, agregar al `.htaccess`:
   `ErrorDocument 404 /404.html`.
